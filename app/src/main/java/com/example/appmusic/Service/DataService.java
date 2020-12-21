@@ -15,4 +15,3 @@ public interface DataService {
     @GET("Server/playlistforcurrentday.php")
     Call<List<PlayList>> getPlayList();
 }
-

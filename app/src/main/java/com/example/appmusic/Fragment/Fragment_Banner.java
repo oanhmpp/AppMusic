@@ -74,11 +74,11 @@ public class Fragment_Banner extends Fragment {
                         //mỗi lần chạy xong set dữ liệu lên
                         viewPager.setCurrentItem(currentItem,true);
                         //thời gian chờ 4 giây
-                        handler.postDelayed(runnable,4000);
+                        handler.postDelayed(runnable,4500);
 
                     }
                 };
-                handler.postDelayed(runnable,4000);
+                handler.postDelayed(runnable,4500);
 
             }
 

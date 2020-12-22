@@ -10,8 +10,9 @@
         android:layout_width="match_parent"
         android:layout_height="200dp">
     </ImageView>
+<!--    android:background="@drawable/custom_background_banner"-->
     <View
-        android:background="@drawable/custom_background_banner"
+
         android:layout_width="match_parent"
         android:layout_height="200dp" />
     <RelativeLayout
@@ -29,7 +30,7 @@
         <TextView
             android:id="@+id/textviewTitleSongBanner"
             android:text="Gặp nhưng không ở lại"
-            android:textColor="#020202"
+            android:textColor="#FFFFFF"
             android:textStyle="bold"
             android:layout_toRightOf="@id/imageViewBanner"
             android:layout_alignTop="@id/imageViewBanner"
@@ -47,7 +48,7 @@
                 android:id="@+id/textviewindex"
                 android:textSize="14dp"
                 android:layout_marginRight="40dp"
-                android:textColor="#020202"
+                android:textColor="#FFFFFF"
                 android:text="Chào mừng bạn đến với những ca khúc đang hot nhất hiện nay"
                 android:maxLines="2"
                 android:layout_width="wrap_content"

@@ -44,7 +44,7 @@ public class BannerAdapter  extends PagerAdapter {
         LayoutInflater layoutInflater=LayoutInflater.from(context);
         View view=layoutInflater.inflate(R.layout.line_banner,null);
         //ánh xạ view trong phần banner vào
-        ImageView imageViewBackgroundBanner=view.findViewById(R.id.imageViewBackgroundBanner);
+        ImageView imageViewBackgroundBanner=view.findViewById(R.id.imageViewBackgroundBanner);// backgỏ
         ImageView imageSongBanner=view.findViewById(R.id.imageViewBanner);
         TextView txtTitleSongBanner=view.findViewById(R.id.textviewTitleSongBanner);
         TextView txtContent=view.findViewById(R.id.textviewindex);

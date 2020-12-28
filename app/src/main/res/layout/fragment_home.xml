@@ -2,7 +2,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:scrollbars="none"
-    android:background="#1E9F6C"
     android:fillViewport="true">
 <!--<LinearLayout-->
 <!--    android:id="@+id/linearLayout"-->
@@ -32,6 +31,15 @@
         <fragment
             android:id="@+id/fragment_PlayList"
             android:name="com.example.appmusic.Fragment.Fragment_Playlist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+
+<!--        bai hat hot-->
+        <fragment
+            android:id="@+id/fragment_SongHot"
+            android:name="com.example.appmusic.Fragment.Fragment_SongHot"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 

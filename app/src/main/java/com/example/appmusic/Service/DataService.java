@@ -27,7 +27,7 @@ public interface DataService {
     Call<Category_Theme> getCategoryMusic();
 
     @GET("Server/albumhot.php")
-    Call<Album> getAlbumHot();
+    Call<List<Album>> getAlbumHot();
 
     //lay du lieu cua bai hat duoc yeu thich
     @GET("Server/songlove.php")

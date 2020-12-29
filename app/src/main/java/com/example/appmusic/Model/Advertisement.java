@@ -2,8 +2,11 @@ package com.example.appmusic.Model;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
+
 //model tạo từ jsonschema2pojo
-public class Advertisement {
+public class Advertisement implements Serializable {
 
 @SerializedName("IDAdver")
 @Expose

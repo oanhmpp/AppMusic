@@ -7,10 +7,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
 
+import com.example.appmusic.Activity.ListSongActivity;
 import com.example.appmusic.Model.Advertisement;
 import com.example.appmusic.R;
 import com.squareup.picasso.Picasso;
@@ -40,7 +42,7 @@ public class BannerAdapter  extends PagerAdapter {
     //Nhìn view mẫu sẽ đi thiết kế cho những page còn lại
     @NonNull
     @Override
-    public Object instantiateItem(@NonNull ViewGroup container, int position) {
+    public Object instantiateItem(@NonNull ViewGroup container, final int position) {
         LayoutInflater layoutInflater=LayoutInflater.from(context);
         View view=layoutInflater.inflate(R.layout.line_banner,null);
         //ánh xạ view trong phần banner vào
@@ -54,17 +56,17 @@ public class BannerAdapter  extends PagerAdapter {
         txtTitleSongBanner.setText(arrayListBanner.get(position).getNameSong());
         txtContent.setText(arrayListBanner.get(position).getContentAdver());
 
-//        // sự kiện khi nhấn vào page trên quảng cáo
-//        view.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                //Toast.makeText(context, "Bạn đã click", Toast.LENGTH_LONG).show();
-//                // chuyển và gửi dữ liệu qua màn hình danh sách các bài hát
-//                Intent intent = new Intent(context, DanhSachBaiHatActivity.class);
-//                intent.putExtra("banner", arrayListBanner.get(position));
-//                context.startActivity(intent);
-//            }
-//        });
+        // sự kiện khi nhấn vào page trên quảng cáo
+        view.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+//                Toast.makeText(context, "Bạn đã click", Toast.LENGTH_LONG).show();
+                // chuyển và gửi dữ liệu qua màn hình danh sách các bài hát
+                Intent intent = new Intent(context, ListSongActivity.class);
+                intent.putExtra("banner", arrayListBanner.get(position));
+                context.startActivity(intent);
+            }
+        });
 
         //add vào viewpager
         container.addView(view);

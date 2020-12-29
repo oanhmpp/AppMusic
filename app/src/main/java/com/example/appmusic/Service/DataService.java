@@ -9,7 +9,10 @@ import com.example.appmusic.Model.Song;
 import java.util.List;
 
 import retrofit2.Call;
+import retrofit2.http.Field;
+import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 
 //phuong thuc tuong tac voi server, server tra ve
 public interface DataService {
@@ -23,9 +26,15 @@ public interface DataService {
     @GET("Server/themeandcategoryinday.php")
     Call<Category_Theme> getCategoryMusic();
 
+    @GET("Server/albumhot.php")
+    Call<Album> getAlbumHot();
+
+    //lay du lieu cua bai hat duoc yeu thich
     @GET("Server/songlove.php")
     Call<List<Song>> getSongHot();
-    // Album
-    @GET("Server/albumhot.php")
-    Call<List<Album>> getAlbumHot();
+
+    //lay du lieu quang cao
+    @FormUrlEncoded
+    @POST("Server/listSong.php")
+    Call<List<Song>> getDataSongAdver(@Field("IDAdver") String idAdver);
 }

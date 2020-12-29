@@ -15,8 +15,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.core.widget.NestedScrollView;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.appmusic.Adapter.ListSongAdapter;
 import com.example.appmusic.Model.Advertisement;
 import com.example.appmusic.Model.Song;
 import com.example.appmusic.R;
@@ -49,6 +51,7 @@ public class ListSongActivity extends AppCompatActivity {
     ArrayList<Song> arrSong;
     View viewBackGround;
     NestedScrollView nestedScrollView;
+    ListSongAdapter listSongAdapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -72,13 +75,13 @@ public class ListSongActivity extends AppCompatActivity {
             viewBackGround = findViewById(R.id.viewBackGround);
             toolbar = findViewById(R.id.toolBarList);
             floatingActionButton = findViewById(R.id.floatingActionButton);
-            recyclerViewListSong = findViewById(R.id.recyclerviewSong);
+            recyclerViewListSong = findViewById(R.id.rvListSong);
             imgList = findViewById(R.id.imgList);
             nestedScrollView = findViewById(R.id.nestScrollView);
             //txtTotalSong = findViewById(R.id.txtTotalSong);
     }
 
-    private void getDataAdver(String idAdver) {
+    private void getDataAdver(final String idAdver) {
         DataService dataService = APIServer.getService(); // khởi tạo  DataService, lấy đường dẫn
         Call<List<Song>> callBack = dataService.getDataSongAdver(idAdver);// gọi pthuc trả về mảng các Album
         callBack.enqueue(new Callback<List<Song>>() {
@@ -88,15 +91,14 @@ public class ListSongActivity extends AppCompatActivity {
                 arrSong = (ArrayList<Song>) response.body(); // trả về mảng dữ liệu
                 // in ra xem kết quả
                 Log.d("BBBBBBBBBBB", arrSong.get(0).getNameSong());
-//                danhSachBaiHatAdapter = new DanhSachBaiHatAdapter(DanhSachBaiHatActivity.this, listBaiHat);
-//                rvDanhSachBaiHat.setLayoutManager(new LinearLayoutManager(DanhSachBaiHatActivity.this));
-//                rvDanhSachBaiHat.setAdapter(danhSachBaiHatAdapter);
-
+                listSongAdapter = new ListSongAdapter(ListSongActivity.this, arrSong);
+                recyclerViewListSong.setLayoutManager(new LinearLayoutManager(ListSongActivity.this,RecyclerView.HORIZONTAL,false));
+                recyclerViewListSong.setAdapter(listSongAdapter);
             }
             // sự kiện thất bại
             @Override
             public void onFailure(Call<List<Song>> call, Throwable t) {
-
+                Log.d("BBBBBBBBBBB", arrSong.size()+"");
             }
         });
     }

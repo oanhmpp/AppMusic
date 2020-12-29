@@ -1,6 +1,7 @@
 package com.example.appmusic.Service;
 
 import com.example.appmusic.Model.Advertisement;
+import com.example.appmusic.Model.Album;
 import com.example.appmusic.Model.Category_Theme;
 import com.example.appmusic.Model.PlayList;
 import com.example.appmusic.Model.Song;
@@ -24,4 +25,7 @@ public interface DataService {
 
     @GET("Server/songlove.php")
     Call<List<Song>> getSongHot();
+    // Album
+    @GET("Server/albumhot.php")
+    Call<List<Album>> getAlbumHot();
 }

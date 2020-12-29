@@ -1,0 +1,50 @@
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="none"
+    android:fillViewport="true">
+<!--<LinearLayout-->
+<!--    android:id="@+id/linearLayout"-->
+<!--    android:orientation="vertical"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="wrap_content">-->
+
+<!--    <fragment-->
+<!--        android:id="@+id/fragmentBanner"-->
+<!--        android:name="com.example.appmusic.Fragment.Fragment_Banner"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="wrap_content" />-->
+
+<!--</LinearLayout>-->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+        <fragment
+            android:id="@+id/fragment"
+            android:name="com.example.appmusic.Fragment.Fragment_Banner"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <fragment
+            android:id="@+id/fragment_PlayList"
+            android:name="com.example.appmusic.Fragment.Fragment_Playlist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+        <!--    Album-->
+        <fragment
+            android:id="@+id/fragment_Album"
+            android:name="com.example.appmusic.Fragment.Fragment_Album_Hot"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+<!--        bai hat hot-->
+        <fragment
+            android:id="@+id/fragment_SongHot"
+            android:name="com.example.appmusic.Fragment.Fragment_SongHot"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+    </LinearLayout>
+</ScrollView>

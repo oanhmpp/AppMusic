@@ -1,31 +1,37 @@
-package com.example.appmusic.Activity;
-
-import android.graphics.Color;
-import android.os.Bundle;
-import android.view.View;
-
-import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-
-import java.util.ArrayList;
-import java.util.List;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-
-public class ListThemeActivity extends AppCompatActivity {
+//package com.example.appmusic.Activity;
+//
+//import android.graphics.Color;
+//import android.os.Bundle;
+//import android.view.View;
+//
+//import androidx.appcompat.app.AppCompatActivity;
+//import androidx.appcompat.widget.Toolbar;
+//import androidx.recyclerview.widget.GridLayoutManager;
+//import androidx.recyclerview.widget.RecyclerView;
+//
+//import com.example.appmusic.Adapter.ListThemeAdapter;
+//import com.example.appmusic.Model.Theme;
+//import com.example.appmusic.R;
+//import com.example.appmusic.Service.APIServer;
+//import com.example.appmusic.Service.DataService;
+//
+//import java.util.ArrayList;
+//import java.util.List;
+//
+//import retrofit2.Call;
+//import retrofit2.Callback;
+//import retrofit2.Response;
+//
+//public class ListThemeActivity extends AppCompatActivity {
 //    Toolbar toolbar;
-//    RecyclerView rvDanhSachChuDe;
-//    DanhSachChuDeAdapter danhSachChuDeAdapter;
-//    ArrayList<ChuDe> listChuDe;
+//    RecyclerView rvListTheme;
+//    ListThemeAdapter ListThemeAdapter;
+//    ArrayList<Theme> listTheme;
 //
 //    @Override
 //    protected void onCreate(Bundle savedInstanceState) {
 //        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_danh_sach_chu_de);
+//        setContentView(R.layout.activity_list_theme);
 //        addControls();
 //        getDataAllChuDe();
 //        addEvents();
@@ -43,11 +49,11 @@ public class ListThemeActivity extends AppCompatActivity {
 //    }
 //    // lấy data tất cả chủ đề
 //    private void getDataAllChuDe() {
-//        DataService dataService = APIService.getService(); // khởi tạo  DataService, lấy đường dẫn
-//        Call<List<ChuDe>> callBack = dataService.getDataAllChuDe();// gọi pthuc trả về mảng các Album
-//        callBack.enqueue(new Callback<List<ChuDe>>() {
+//        DataService dataService = APIServer.getService(); // khởi tạo  DataService, lấy đường dẫn
+//        Call<List<Theme>> callBack = dataService.getDataAllChuDe();// gọi pthuc trả về mảng các Album
+//        callBack.enqueue(new Callback<List<Theme>>() {
 //            @Override
-//            public void onResponse(Call<List<ChuDe>> call, Response<List<ChuDe>> response) {
+//            public void onResponse(Call<List<Theme>> call, Response<List<Theme>> response) {
 //                // sự kiện lăng nghe thành công
 //                listChuDe = (ArrayList<ChuDe>) response.body(); // trả về mảng dữ liệu
 //                // in ra xem kết quả
@@ -66,7 +72,7 @@ public class ListThemeActivity extends AppCompatActivity {
 //
 //            // sự kiện thất bại
 //            @Override
-//            public void onFailure(Call<List<ChuDe>> call, Throwable t) {
+//            public void onFailure(Call<List<Theme>> call, Throwable t) {
 //
 //            }
 //        });
@@ -82,4 +88,4 @@ public class ListThemeActivity extends AppCompatActivity {
 //        getSupportActionBar().setTitle("List ChuDe");
 //
 //    }
-}
+//}

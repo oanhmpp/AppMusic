@@ -16,6 +16,8 @@
 //import com.example.appmusic.Model.Category;
 //import com.example.appmusic.Model.Theme;
 //import com.example.appmusic.R;
+//import com.example.appmusic.Service.APIServer;
+//import com.example.appmusic.Service.DataService;
 //
 //import java.util.ArrayList;
 //import java.util.List;
@@ -24,7 +26,7 @@
 //import retrofit2.Callback;
 //import retrofit2.Response;
 //
-//public class ListCategorybyTheme  extends AppCompatActivity {
+//public class ListCategorybyThemeActivity extends AppCompatActivity {
 //    Theme theme;
 //    Toolbar toolbar;
 //    RecyclerView rvDanhSachTheLoaiTheoChuDe;
@@ -34,7 +36,7 @@
 //    @Override
 //    protected void onCreate(Bundle savedInstanceState) {
 //        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_danh_sach_the_loai_theo_chu_de);
+//        setContentView(R.layout.activity_theme_category);
 //        getDataIntent();
 //        addControls();
 //        getDataAllAlbum();
@@ -58,13 +60,13 @@
 //        // vì đã xoá action bar đi rồi nên dùng getSupport
 //        setSupportActionBar(toolbar); // thay thế tool bar vì đã bỏ action bar
 //        getSupportActionBar().setDisplayHomeAsUpEnabled(true); // nút mũi tên quay lại
-//        getSupportActionBar().setTitle(chuDe.getTenChuDe());
+//        getSupportActionBar().setTitle(Theme.getNameTheme());
 //
 //    }
 //    // lấy data tất cả album
 //    private void getDataAllAlbum() {
-//        DataService dataService = APIService.getService(); // khởi tạo  DataService, lấy đường dẫn
-//        Call<List<TheLoai>> callBack = dataService.getDataTheLoaiTheoChuDe(chuDe.getIdChuDe());// gọi pthuc trả về mảng các Album
+//        DataService dataService= APIServer.getService();// khởi tạo  DataService, lấy đường dẫn
+//        Call<List<Theme>> callBack = dataService.getDataTheLoaiTheoChuDe(chuDe.getIdChuDe());// gọi pthuc trả về mảng các Album
 //        callBack.enqueue(new Callback<List<TheLoai>>() {
 //            @Override
 //            public void onResponse(Call<List<TheLoai>> call, Response<List<TheLoai>> response) {
@@ -75,7 +77,7 @@
 ////                Log.d("BBBBBBBBBBB", listAlbums.get(0).getHinhAnhAlbum());
 ////                Log.d("BBBBBBBBBBB", listAlbums.get(0).getTenCasiAlbum());
 //                // gắn phần apdater lên
-//                danhSachTheLoaiTheoChuDeAdapter = new DanhSachTheLoaiTheoChuDeAdapter(DanhSachTheLoaiTheoChuDeActivity.this, listTheLoai);
+//                danhSachTheLoaiTheoChuDeAdapter = new ListCategoryByThemeAdapter(ListCategoryByThemeAdapter.this, listTheLoai);
 //                // hiển thị lên RecycleView ở đây, cho layout nào thì nó sẽ hiện thị dạng đó, Grid thì phải thêm số cột nữa
 //                // hiển thị dạng Grid với 2 cột
 //                rvDanhSachTheLoaiTheoChuDe.setLayoutManager(new GridLayoutManager(DanhSachTheLoaiTheoChuDeActivity.this, 2));

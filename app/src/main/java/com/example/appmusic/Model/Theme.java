@@ -1,43 +1,41 @@
 package com.example.appmusic.Model;
-
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.io.Serializable;
-
-public class Theme implements Serializable {
+public class Theme {
 
     @SerializedName("IDTheme")
     @Expose
-    private String IDTheme;
+    private String iDTheme;
     @SerializedName("NameTheme")
     @Expose
-    private String NameTheme;
+    private String nameTheme;
     @SerializedName("ImageTheme")
     @Expose
-    private String ImageTheme;
+    private String imageTheme;
 
     public String getIDTheme() {
-        return IDTheme;
+        return iDTheme;
     }
 
-    public void setIDTheme(String IDTheme) {
-        this.IDTheme = IDTheme;
+    public void setIDTheme(String iDTheme) {
+        this.iDTheme = iDTheme;
     }
 
     public String getNameTheme() {
-        return NameTheme;
+        return nameTheme;
     }
 
     public void setNameTheme(String nameTheme) {
-        NameTheme = nameTheme;
+        this.nameTheme = nameTheme;
     }
 
     public String getImageTheme() {
-        return ImageTheme;
+        return imageTheme;
     }
 
     public void setImageTheme(String imageTheme) {
-        ImageTheme = imageTheme;
+        this.imageTheme = imageTheme;
     }
+
 }

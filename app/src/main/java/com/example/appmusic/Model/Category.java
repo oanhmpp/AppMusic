@@ -1,54 +1,52 @@
 package com.example.appmusic.Model;
-
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-import java.io.Serializable;
-
-public class Category implements Serializable {
+public class Category {
 
     @SerializedName("IDCategory")
     @Expose
-    private String IDCategory;
+    private String iDCategory;
     @SerializedName("IDTheme")
     @Expose
-    private String IDTheme;
+    private String iDTheme;
     @SerializedName("NameCategory")
     @Expose
-    private String NameCategory;
+    private String nameCategory;
     @SerializedName("ImageCategory")
     @Expose
-    private String ImageCategory;
+    private String imageCategory;
 
     public String getIDCategory() {
-        return IDCategory;
+        return iDCategory;
     }
 
-    public void setIDCategory(String IDCategory) {
-        this.IDCategory = IDCategory;
+    public void setIDCategory(String iDCategory) {
+        this.iDCategory = iDCategory;
     }
 
     public String getIDTheme() {
-        return IDTheme;
+        return iDTheme;
     }
 
-    public void setIDTheme(String IDTheme) {
-        this.IDTheme = IDTheme;
+    public void setIDTheme(String iDTheme) {
+        this.iDTheme = iDTheme;
     }
 
     public String getNameCategory() {
-        return NameCategory;
+        return nameCategory;
     }
 
     public void setNameCategory(String nameCategory) {
-        NameCategory = nameCategory;
+        this.nameCategory = nameCategory;
     }
 
     public String getImageCategory() {
-        return ImageCategory;
+        return imageCategory;
     }
 
     public void setImageCategory(String imageCategory) {
-        ImageCategory = imageCategory;
+        this.imageCategory = imageCategory;
     }
+
 }

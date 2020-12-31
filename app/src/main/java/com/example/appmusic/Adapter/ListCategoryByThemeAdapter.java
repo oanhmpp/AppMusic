@@ -12,57 +12,66 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appmusic.Model.Category;
+import com.example.appmusic.Model.Category_Theme;
+import com.example.appmusic.Model.Theme;
+import com.example.appmusic.R;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class ListCategoryByThemeAdapter
+public class ListCategoryByThemeAdapter extends RecyclerView.Adapter<ListCategoryByThemeAdapter.ViewHolder>
 //        extends RecyclerView.Adapter<ListCategoryByThemeAdapter.ViewHolder>
 {
     Context context;
-    ArrayList<Category> listTheLoai;
-//
-//    public ListCategoryByThemeAdapter(Context context, ArrayList<Category> listTheLoai) {
-//        this.context = context;
-//        this.listTheLoai = listTheLoai;
-//    }
-//
-//    @NonNull
-//    @Override
-//    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-//        LayoutInflater inflater = LayoutInflater.from(context);
-//        View view = inflater.inflate(R.layout.line_danh_sach_the_loai_theo_chu_de, parent, false);
-//        return new DanhSachTheLoaiTheoChuDeAdapter.ViewHolder(view);
-//    }
-//
-//    @Override
-//    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-//        // gán data cho mỗi item
-//        TheLoai theLoai = listTheLoai.get(position);
-//        Picasso.get().load(theLoai.getHinhTheLoai()).into(holder.imgTheLoaiTheoChuDe);
-//        holder.txtNameTheLoaiTheoChuDe.setText(theLoai.getTenTheLoai());
-//
-//    }
-//
-//    @Override
-//    public int getItemCount() {
-//        return listTheLoai.size();
-//    }
-//
-//    // View Holder để tăng tốc việc ánh xạ lại cho View
-//    public class ViewHolder extends RecyclerView.ViewHolder {
-//        TextView txtNameTheLoaiTheoChuDe, txtAuthorTheLoaiTheoChuDe;
-//        ImageView imgTheLoaiTheoChuDe;
-//
-//        public ViewHolder(@NonNull final View itemView) {
-//            super(itemView);
-//            txtNameTheLoaiTheoChuDe = itemView.findViewById(R.id.txtNameTheLoaiTheoChuDe);
-//            txtAuthorTheLoaiTheoChuDe = itemView.findViewById(R.id.txtAuthorTheLoaiTheoChuDe);
-//            imgTheLoaiTheoChuDe = itemView.findViewById(R.id.imgTheLoaiTheoChuDe);
-//
-//            // sự kiện khi nhấn vào hình từng ietm trong Tất cả các chủ đề (phần mở rộng bên trong)
-//            // Nó sẽ chuyển qua màn hình các thể loại tương ứng với chủ đề đó
-//            imgTheLoaiTheoChuDe.setOnClickListener(new View.OnClickListener() {
+    ArrayList<Category> listCategory;
+
+    public ListCategoryByThemeAdapter(Context context, ArrayList<Category> listCategory) {
+        this.context = context;
+        this.listCategory = listCategory;
+    }
+
+    @NonNull
+    @Override
+    //gắn layout vào
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        LayoutInflater inflater = LayoutInflater.from(context);
+        //gắn layout
+        View view = inflater.inflate(R.layout.line_theme_category_today, parent, false);
+        //sau khi ánh xạ xog biến view sẽ gắn vào itemview
+        return new ViewHolder(view);
+    }
+
+    @Override
+    //thực hiện gắn giá trị
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        // gán data cho mỗi item
+        Category category = listCategory.get(position);
+        holder.txtNameCategoryByTheme.setText(category.getNameCategory());
+        Picasso.with(context).load(category.getImageCategory()).into(holder.imgCategoryByTheme);
+//        Picasso.with(context).load(theLoai.getImageCategory()).into(holder.imgCategoryByTheme);
+
+    }
+
+    @Override
+    public int getItemCount() {
+        return listCategory.size();
+    }
+
+    // View Holder để tăng tốc việc ánh xạ lại cho View
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        TextView txtNameCategoryByTheme, txtAuthorCategoryByTheme;
+        ImageView imgCategoryByTheme;
+
+        public ViewHolder( View itemView) {
+            super(itemView);
+            imgCategoryByTheme = itemView.findViewById(R.id.imgThemeCategory);
+            txtNameCategoryByTheme = itemView.findViewById(R.id.txtNameCategoryTheme);
+//            txtAuthorCategoryByTheme = itemView.findViewById(R.id.txtAuthorCategoryByTheme);
+
+
+            // sự kiện khi nhấn vào hình từng ietm trong Tất cả các chủ đề (phần mở rộng bên trong)
+            // Nó sẽ chuyển qua màn hình các thể loại tương ứng với chủ đề đó
+//            imgCategoryByTheme.setOnClickListener(new View.OnClickListener() {
 //                @Override
 //                public void onClick(View v) {
 //                    // gửi data và chuyển qua màn hình danh sách các bài hát
@@ -71,6 +80,6 @@ public class ListCategoryByThemeAdapter
 //                    context.startActivity(intent);
 //                }
 //            });
-//        }
-//    }
+        }
+    }
 }

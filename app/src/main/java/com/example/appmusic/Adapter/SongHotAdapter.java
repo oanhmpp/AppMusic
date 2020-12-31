@@ -1,6 +1,7 @@
 package com.example.appmusic.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -14,6 +15,7 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.appmusic.Activity.PlayMusicActivity;
 import com.example.appmusic.Model.Song;
 import com.example.appmusic.R;
 import com.example.appmusic.Service.APIServer;
@@ -69,6 +71,7 @@ public class SongHotAdapter extends  RecyclerView.Adapter<SongHotAdapter.ViewHol
             imgDownload = itemView.findViewById(R.id.imgDownload);
             imgLikes = itemView.findViewById(R.id.imgLikes);
             imgSong  = itemView.findViewById(R.id.imgSong);
+
             imgLikes.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
@@ -95,6 +98,17 @@ public class SongHotAdapter extends  RecyclerView.Adapter<SongHotAdapter.ViewHol
                     imgLikes.setEnabled(false);
                 }
             });
+
+            // xử lí khi nhấn vào từng item bài hát
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // chuyển dữ liệu qua màn hình play nhạc
+                    Intent intent = new Intent(context, PlayMusicActivity.class);
+                    intent.putExtra("playmusic", arrSong.get(getPosition())); // truyền nguyên đối tượng bài hát qua màn hình Play nhac
+                    context.startActivity(intent);
+                }
+            });
         }
-    }
+        }
 }

@@ -1,6 +1,7 @@
 package com.example.appmusic.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -10,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.appmusic.Activity.PlayMusicActivity;
 import com.example.appmusic.Model.Song;
 import com.example.appmusic.R;
 
@@ -55,6 +57,17 @@ public class ListSongAdapter extends RecyclerView.Adapter<ListSongAdapter.ViewHo
             tvNameSong = itemView.findViewById(R.id.tvNameSong);
             tvSinger = itemView.findViewById(R.id.tvSinger);
             imageViewLikes = itemView.findViewById(R.id.imageViewLikes);
+
+       // xử lí khi nhấn vào từng item bài hát
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // chuyển dữ liệu qua màn hình play nhạc
+                    Intent intent = new Intent(context, PlayMusicActivity.class);
+                    intent.putExtra("playmusic", arrSong.get(getPosition())); // truyền nguyên đối tượng bài hát qua màn hình Play nhac
+                    context.startActivity(intent);
+                }
+            });
         }
     }
 }

@@ -114,6 +114,7 @@ public class ListSongActivity extends AppCompatActivity {
                 listSongAdapter = new ListSongAdapter(ListSongActivity.this, arrSong);
                 recyclerViewListSong.setLayoutManager(new LinearLayoutManager(ListSongActivity.this, RecyclerView.VERTICAL, false));
                 recyclerViewListSong.setAdapter(listSongAdapter);
+                eventClick();
             }
 
             @Override
@@ -121,19 +122,6 @@ public class ListSongActivity extends AppCompatActivity {
                 Log.d("BBBBBBBBBBB", idPlayList.toString() + "fail");
             }
         });
-    }
-
-    private void addControls() {
-        coordinatorLayout = findViewById(R.id.coordinatorLayout);
-        appBarLayout = findViewById(R.id.appBarLayout);
-        collapsingToolbarLayout = findViewById(R.id.collapsingToolBar);
-        viewBackGround = findViewById(R.id.viewBackGround);
-        toolbar = findViewById(R.id.toolBarList);
-        floatingActionButton = findViewById(R.id.floatingActionButton);
-        recyclerViewListSong = findViewById(R.id.rvListSong);
-        imgList = findViewById(R.id.imgList);
-        nestedScrollView = findViewById(R.id.nestScrollView);
-        //txtTotalSong = findViewById(R.id.txtTotalSong);
     }
 
     private void getDataAdver(final String idAdver) {
@@ -149,6 +137,7 @@ public class ListSongActivity extends AppCompatActivity {
                 listSongAdapter = new ListSongAdapter(ListSongActivity.this, arrSong);
                 recyclerViewListSong.setLayoutManager(new LinearLayoutManager(ListSongActivity.this, RecyclerView.VERTICAL, false));
                 recyclerViewListSong.setAdapter(listSongAdapter);
+                eventClick();
             }
 
             // sự kiện thất bại
@@ -157,6 +146,19 @@ public class ListSongActivity extends AppCompatActivity {
                 Log.d("BBBBBBBBBBB", arrSong.size() + "");
             }
         });
+    }
+
+    private void addControls() {
+        coordinatorLayout = findViewById(R.id.coordinatorLayout);
+        appBarLayout = findViewById(R.id.appBarLayout);
+        collapsingToolbarLayout = findViewById(R.id.collapsingToolBar);
+        viewBackGround = findViewById(R.id.viewBackGround);
+        toolbar = findViewById(R.id.toolBarList);
+        floatingActionButton = findViewById(R.id.floatingActionButton);
+        recyclerViewListSong = findViewById(R.id.rvListSong);
+        imgList = findViewById(R.id.imgList);
+        nestedScrollView = findViewById(R.id.nestScrollView);
+        //txtTotalSong = findViewById(R.id.txtTotalSong);
     }
 
     private void setValueInView(String name, String image) {
@@ -231,4 +233,17 @@ public class ListSongActivity extends AppCompatActivity {
 
         }
     }
+
+        // dua vao moi phuong thuc get du lieu
+        private void eventClick(){
+            floatingActionButton.setEnabled(true);
+            floatingActionButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(ListSongActivity.this,PlayMusicActivity.class);
+                    intent.putExtra("songs",arrSong);
+                    startActivity(intent);
+                }
+            });
+        }
 }

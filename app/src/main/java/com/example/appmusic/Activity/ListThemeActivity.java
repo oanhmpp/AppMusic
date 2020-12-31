@@ -1,5 +1,7 @@
-//package com.example.appmusic.Activity;
-//
+package com.example.appmusic.Activity;
+
+import androidx.appcompat.app.AppCompatActivity;
+
 //import android.graphics.Color;
 //import android.os.Bundle;
 //import android.view.View;
@@ -22,7 +24,7 @@
 //import retrofit2.Callback;
 //import retrofit2.Response;
 //
-//public class ListThemeActivity extends AppCompatActivity {
+public class ListThemeActivity extends AppCompatActivity {
 //    Toolbar toolbar;
 //    RecyclerView rvListTheme;
 //    ListThemeAdapter ListThemeAdapter;
@@ -88,4 +90,4 @@
 //        getSupportActionBar().setTitle("List ChuDe");
 //
 //    }
-//}
+}

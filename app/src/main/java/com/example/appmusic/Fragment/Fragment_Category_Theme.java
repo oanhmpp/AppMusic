@@ -1,5 +1,6 @@
 package com.example.appmusic.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,6 +18,7 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.appmusic.Activity.ListSongActivity;
 import com.example.appmusic.Adapter.ListCategoryByThemeAdapter;
 import com.example.appmusic.Model.Category;
 import com.example.appmusic.Model.Category_Theme;
@@ -26,6 +28,7 @@ import com.example.appmusic.Service.APIServer;
 import com.example.appmusic.Service.DataService;
 import com.squareup.picasso.Picasso;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 import retrofit2.Call;
@@ -121,6 +124,17 @@ public class Fragment_Category_Theme extends Fragment {
                     cardView.addView(imageView);
                     //đưa vào trong phần linear
                     linearLayout.addView(cardView);
+
+                    //bắt sự kiện
+                    final int finalJ = j;
+                    imageView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent=new Intent(getActivity(), ListSongActivity.class);
+                            intent.putExtra("idCategory", categoriesArrayList.get(finalJ));
+                            startActivity(intent);
+                        }
+                    });
                 }
                 //đưa vào horizontal
                 horizontalScrollView.addView(linearLayout);

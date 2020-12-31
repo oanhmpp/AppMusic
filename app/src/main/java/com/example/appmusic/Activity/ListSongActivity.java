@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -20,6 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appmusic.Adapter.ListSongAdapter;
 import com.example.appmusic.Model.Advertisement;
+import com.example.appmusic.Model.Category;
 import com.example.appmusic.Model.PlayList;
 import com.example.appmusic.Model.Song;
 import com.example.appmusic.R;
@@ -54,6 +56,7 @@ public class ListSongActivity extends AppCompatActivity {
     NestedScrollView nestedScrollView;
     ListSongAdapter listSongAdapter;
     PlayList playList;
+    Category category;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -73,6 +76,31 @@ public class ListSongActivity extends AppCompatActivity {
             setValueInView(playList.getNamePlayList(), playList.getImageIcon());
             getDataPlaylist(playList.getIDPlayList());
         }
+        // nếu TheLoai tồn tại và tên the loai ko bằng rỗng
+        if (category != null && !category.getNameCategory().equals("")) {
+            setValueInView(category.getNameCategory(), category.getImageCategory());
+//            Log.d("AAAAA",category.getImageCategory());
+            getDataCategory(category.getIDCategory());
+        }
+    }
+
+    private void getDataCategory(String idCategory) {
+        DataService dataService = APIServer.getService(); // khởi tạo  DataService, lấy đường dẫn
+        Call<List<Song>> call=dataService.getListCategoryByTheme(idCategory);
+        call.enqueue(new Callback<List<Song>>() {
+            @Override
+            public void onResponse(Call<List<Song>> call, Response<List<Song>> response) {
+                arrSong = (ArrayList<Song>) response.body();
+                listSongAdapter = new ListSongAdapter(ListSongActivity.this, arrSong);
+                recyclerViewListSong.setLayoutManager(new LinearLayoutManager(ListSongActivity.this, RecyclerView.VERTICAL, false));
+                recyclerViewListSong.setAdapter(listSongAdapter);
+            }
+
+            @Override
+            public void onFailure(Call<List<Song>> call, Throwable t) {
+
+            }
+        });
     }
 
     private void getDataPlaylist(final String idPlayList) {
@@ -182,6 +210,7 @@ public class ListSongActivity extends AppCompatActivity {
 //        toolbar = findViewById(R.id.toolBarList);
         recyclerViewListSong = findViewById(R.id.rvListSong);
 //        floatingActionButton = findViewById(R.id.floatingActionButton);
+
     }
 
     private void getDataIntent() {
@@ -195,6 +224,11 @@ public class ListSongActivity extends AppCompatActivity {
                 playList = (PlayList) intent.getSerializableExtra("itemPlaylist");
 
             }
+            if (intent.hasExtra("idCategory")) {
+                category = (Category) intent.getSerializableExtra("idCategory");
+
+            }
+
         }
     }
 }

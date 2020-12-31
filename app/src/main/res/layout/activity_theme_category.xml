@@ -8,7 +8,7 @@
     tools:context=".Activity.ListCategorybyThemeActivity">
     <!--Thường layout danh sach chỉ có 1 thanh tool bar và 1 recyleview để hiển thị data-->
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolBarTheLoaiTheoChuDe"
+        android:id="@+id/toolBarCategoryByTheme"
         android:background="@color/colorPrimary"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
@@ -17,7 +17,7 @@
     </androidx.appcompat.widget.Toolbar>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvDanhSachTheLoaiTheoChuDe"
+        android:id="@+id/rvListCategoryByTheme"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

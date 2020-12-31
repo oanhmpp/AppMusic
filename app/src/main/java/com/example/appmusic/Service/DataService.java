@@ -51,4 +51,9 @@ public interface DataService {
     @POST("updatelikes.php")
     Call<String> UpdateLikes(@Field("likes") String likes,@Field("IDSong") String IDSong);
 //    $_POST['$IDSong']
+
+    //sự kiện thể loại
+    @FormUrlEncoded
+    @POST("Server/listSong.php")
+    Call<List<Song>> getListCategoryByTheme(@Field("idCategory") String idCategory);
 }

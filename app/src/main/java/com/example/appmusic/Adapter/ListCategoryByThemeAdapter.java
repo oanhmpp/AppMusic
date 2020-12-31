@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.appmusic.Activity.ListSongActivity;
 import com.example.appmusic.Model.Category;
 import com.example.appmusic.Model.Category_Theme;
 import com.example.appmusic.Model.Theme;
@@ -71,15 +72,15 @@ public class ListCategoryByThemeAdapter extends RecyclerView.Adapter<ListCategor
 
             // sự kiện khi nhấn vào hình từng ietm trong Tất cả các chủ đề (phần mở rộng bên trong)
             // Nó sẽ chuyển qua màn hình các thể loại tương ứng với chủ đề đó
-//            imgCategoryByTheme.setOnClickListener(new View.OnClickListener() {
-//                @Override
-//                public void onClick(View v) {
-//                    // gửi data và chuyển qua màn hình danh sách các bài hát
-//                    Intent intent = new Intent(context, DanhSachBaiHatActivity.class);
-//                    intent.putExtra("idtheloai", listTheLoai.get(getPosition()));// key put vào trùng với key playlist
-//                    context.startActivity(intent);
-//                }
-//            });
+            imgCategoryByTheme.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    // gửi data và chuyển qua màn hình danh sách các bài hát
+                    Intent intent = new Intent(context, ListSongActivity.class);
+//                    intent.putExtra("idtheloai", listCategory.get(getPosition()));// key put vào trùng với key playlist
+                    context.startActivity(intent);
+                }
+            });
         }
     }
 }

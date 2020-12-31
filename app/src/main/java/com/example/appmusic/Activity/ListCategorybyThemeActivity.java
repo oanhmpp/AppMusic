@@ -1,5 +1,8 @@
-//package com.example.appmusic.Activity;
-//
+package com.example.appmusic.Activity;
+
+import androidx.appcompat.app.AppCompatActivity;
+
+
 //import android.content.Intent;
 //import android.graphics.Color;
 //import android.os.Bundle;
@@ -26,7 +29,7 @@
 //import retrofit2.Callback;
 //import retrofit2.Response;
 //
-//public class ListCategorybyThemeActivity extends AppCompatActivity {
+public class ListCategorybyThemeActivity extends AppCompatActivity {
 //    Theme theme;
 //    Toolbar toolbar;
 //    RecyclerView rvDanhSachTheLoaiTheoChuDe;
@@ -104,4 +107,4 @@
 //        }
 //
 //    }
-//}
+}

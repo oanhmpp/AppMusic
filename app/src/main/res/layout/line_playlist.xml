@@ -15,8 +15,9 @@
     </ImageView>
 
     <!-- Dùng để pha mau, trộn màu cho đẹp @@-->
+<!--    android:background="@drawable/custom_background_banner"-->
+
     <View
-        android:background="@drawable/custom_background_banner"
         android:layout_width="match_parent"
         android:layout_height="110dp"
         android:layout_marginLeft="8dp"

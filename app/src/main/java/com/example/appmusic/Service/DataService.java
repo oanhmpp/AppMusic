@@ -46,4 +46,9 @@ public interface DataService {
 
     @GET("Server/listPlaylistssss.php")
     Call<List<PlayList>> getListPlayLists () ;
+
+    @FormUrlEncoded
+    @POST("updatelikes.php")
+    Call<String> UpdateLikes(@Field("likes") String likes,@Field("IDSong") String IDSong);
+//    $_POST['$IDSong']
 }

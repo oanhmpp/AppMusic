@@ -39,7 +39,10 @@ public class Fragment_Music_Disk extends Fragment {
         objectAnimator.setInterpolator(new LinearInterpolator());
         return view;
     }
+    // hiển thị bên phần play nhạc
     public void playMusic(String img) {
         Picasso.with(getActivity()).load(img).into(circleImageView);
+ //       hiển thị tên ca sỉ với tên bài hát ở cái đầu tiên khi bấm vào xem danh sách
+//        txtNameSong.setText();
     }
 }

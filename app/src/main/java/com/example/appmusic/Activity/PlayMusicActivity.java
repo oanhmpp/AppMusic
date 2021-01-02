@@ -35,7 +35,7 @@ import java.util.Random;
 
 public class PlayMusicActivity extends AppCompatActivity {
     Toolbar toolbarPlayMusic;
-    TextView txtTimeSong, txtTimeTotal, txtNameSong, txtNameSinger;
+    TextView txtTimeSong, txtTimeTotal;
     SeekBar seekBarSong;
     ImageButton imgButtonShuff, imgButtonPre, imgButtonPlay, imgButtonNext, imgButtonRepeat, imgButtonLove, imgButtonList;
     ViewPager viewPagerPlayMusic;
@@ -45,7 +45,7 @@ public class PlayMusicActivity extends AppCompatActivity {
     Fragment_Play_List_Songs fragment_play_list_songs;
     MediaPlayer mediaPlayer;
     int position = 0;
-    int old_position ;
+    int old_position = 0 ;
     boolean repeat  = false;
     boolean checkRandom = false;
     boolean next = false;
@@ -102,15 +102,16 @@ public class PlayMusicActivity extends AppCompatActivity {
             }
         });
 
+        // chưa ra :(
         // tạo sự kiện cho nút lặp lại
         imgButtonRepeat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if ( repeat = false){
+                if (!repeat){
                     if(checkRandom = true){
                         checkRandom = false;
                         imgButtonRepeat.setImageResource(R.drawable.iconsyned);
-                        imgButtonShuff.setImageResource(R.drawable.iconshuffled);
+                        imgButtonShuff.setImageResource(R.drawable.iconsuffle);
                     }
                     imgButtonRepeat.setImageResource(R.drawable.iconsyned);
                     repeat = true;
@@ -121,17 +122,18 @@ public class PlayMusicActivity extends AppCompatActivity {
             }
         });
 
+        // test được ròi
         // tạo sự kiện cho nút random bài hát
         imgButtonShuff.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if ( checkRandom = false){
+                if ( !checkRandom){
                     if(repeat = true){
                         repeat = false;
                         imgButtonShuff.setImageResource(R.drawable.iconshuffled);
                         imgButtonRepeat.setImageResource(R.drawable.iconrepeat);
                     }
-                    imgButtonRepeat.setImageResource(R.drawable.iconshuffled);
+                    imgButtonShuff.setImageResource(R.drawable.iconshuffled);
                     checkRandom = true;
                 }else {
                     imgButtonShuff.setImageResource(R.drawable.iconsuffle);
@@ -140,6 +142,7 @@ public class PlayMusicActivity extends AppCompatActivity {
             }
         });
 
+        // test được rồi
         // sự kiện cho nút kéo thời gian phát nhạc
         seekBarSong.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
@@ -154,11 +157,11 @@ public class PlayMusicActivity extends AppCompatActivity {
 
             @Override
             public void onStopTrackingTouch(SeekBar seekBar) {
-
+                mediaPlayer.seekTo(seekBar.getProgress());
             }
         });
 
-        // test được
+        // test đc mà tên bài hát nó k chuyển liền
         // tạo sự kiện cho nút next
         imgButtonNext.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -174,6 +177,7 @@ public class PlayMusicActivity extends AppCompatActivity {
                     if(position < (arrSong.size())){
                         imgButtonPlay.setImageResource(R.drawable.iconpause);
                         position++;
+                        Log.d("HHHHHHHH",arrSong.get(position).getNameSong()+position+"");
                         if (repeat) {
                             position = position;
                         } else {
@@ -195,7 +199,7 @@ public class PlayMusicActivity extends AppCompatActivity {
                     fragment_music_disk.txtNameSinger.setText(arrSong.get(position).getSinger());
                     fragment_music_disk.txtNameSong.setText(arrSong.get(position).getNameSong());
                     getSupportActionBar().setTitle(arrSong.get(position).getNameSong());
-//                    updateTime();
+                    updateTime();
 //                    if (fragment_music_disk.objectAnimator != null) {
 //                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
 //                            fragment_music_disk.objectAnimator.resume();
@@ -248,7 +252,7 @@ public class PlayMusicActivity extends AppCompatActivity {
                     fragment_music_disk.playMusic(arrSong.get(position).getImageSong());
                     fragment_music_disk.txtNameSinger.setText(arrSong.get(position).getSinger());
                     fragment_music_disk.txtNameSong.setText(arrSong.get(position).getNameSong());
-//                    updateTime();
+                    updateTime();
 //                    if (fragment_disk.objectAnimator != null) {
 //                        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.KITKAT) {
 //                            fragment_disk.objectAnimator.resume();
@@ -381,13 +385,94 @@ public class PlayMusicActivity extends AppCompatActivity {
             }
             mediaPlayer.start();
             timeSong();
+            updateTime();
         }
     }
 
     private void timeSong () {
         SimpleDateFormat simpleDateFormat = new SimpleDateFormat("mm:ss");
-        txtTimeSong.setText(simpleDateFormat.format(mediaPlayer.getDuration()));
+        txtTimeTotal.setText(simpleDateFormat.format(mediaPlayer.getDuration()));
         seekBarSong.setMax(mediaPlayer.getDuration());
     }
 
+    private void updateTime(){
+        final Handler handler = new Handler();
+        handler.postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                if (mediaPlayer!= null){
+                    seekBarSong.setProgress(mediaPlayer.getCurrentPosition());
+                    SimpleDateFormat simpleDateFormat = new SimpleDateFormat("mm:ss");
+                    // set lai thoi gian cho thanh thoi gian
+                    txtTimeSong.setText(simpleDateFormat.format(mediaPlayer.getCurrentPosition()));
+                    // dam bao cho no chay lien tuc
+                    handler.postDelayed(this,300);
+                    mediaPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
+                        @Override
+                        public void onCompletion(MediaPlayer mp) {
+                            next = true;
+                            try{
+                                Thread.sleep(1000);
+                            } catch (Exception e){
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+                }
+            }
+        },300);
+        // chuyen bai hat
+        final Handler handler1 = new Handler();
+            handler1.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                if(next == true){
+                    old_position = position;
+                    // kiểm tra nếu có dữ liệu
+                    if (arrSong.size() > 0) {
+                        if (mediaPlayer.isPlaying() || mediaPlayer != null) {
+                            mediaPlayer.stop();
+                            mediaPlayer.release();
+                            mediaPlayer = null;
+                        }
+                        if (repeat) {
+                            position = position;
+                        } else {
+                            position++;
+                            if (position == arrSong.size()) {
+                                position = 0;
+                            }
+                            if (checkRandom) {
+                                Random random = new Random();
+                                int viTriRandom = random.nextInt(arrSong.size());
+                                position = viTriRandom;
+                            }
+                        }
+                        new Playmp3().execute(arrSong.get(position).getLinkSong());
+                        imgButtonPlay.setImageResource(R.drawable.iconpause);
+                        fragment_music_disk.playMusic(arrSong.get(position).getImageSong());
+                        fragment_music_disk.txtNameSinger.setText(arrSong.get(position).getSinger());
+                        fragment_music_disk.txtNameSong.setText(arrSong.get(position).getNameSong());
+                        getSupportActionBar().setTitle(arrSong.get(position).getNameSong());
+                    }
+
+                    imgButtonPre.setClickable(false);
+                    imgButtonNext.setClickable(false);
+                    Handler handler1 = new Handler();
+                    handler1.postDelayed(new Runnable() {
+                        @Override
+                        public void run() {
+                            imgButtonPre.setClickable(true);
+                            imgButtonNext.setClickable(true);
+                        }
+                    }, 5000);
+                    next = false;
+                    handler1.removeCallbacks(this); // xoá cái cũ đi
+
+                } else {
+                    handler1.postDelayed(this,1000);
+                }
+                }
+            },1000);// sau khoang 1s
+    }
 }

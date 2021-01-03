@@ -72,7 +72,7 @@ public class SongHotAdapter extends  RecyclerView.Adapter<SongHotAdapter.ViewHol
             imgLikes.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-Toast.makeText(context, arrSong.get(getPosition()).getNameSong(), Toast.LENGTH_LONG).show();
+//            Toast.makeText(context, arrSong.get(getPosition()).getNameSong(), Toast.LENGTH_LONG).show();
                 imgLikes.setImageResource(R.drawable.iconloved);
                     DataService dataService = APIServer.getService();
                     Call<String> callback =dataService.UpdateLikes("1",arrSong.get(getPosition()).getNameSong());

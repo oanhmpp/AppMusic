@@ -20,8 +20,8 @@
     <!-- ViewPager để chuyển, vuốt qua lại giữa các màn hình(Fragment)-->
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewpagerMusic"
-        android:layout_width="match_parent"
-        android:layout_height="0dp"
+        android:layout_width="wrap_content"
+        android:layout_height="10dp"
         android:layout_weight="7.5"></androidx.viewpager.widget.ViewPager>
 
     <LinearLayout
@@ -122,42 +122,76 @@
 
             </ImageButton>
         </LinearLayout>
-        <LinearLayout
-            android:orientation="horizontal"
-            android:layout_marginTop="-5dp"
+
+        <ScrollView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-            <ImageButton
-                android:id="@+id/imgButtonLove"
-                android:scaleType="fitXY"
-                android:layout_marginLeft="20dp"
-                android:layout_marginRight="60dp"
-                android:background="@null"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:src="@drawable/iconloved">
+            android:layout_height="match_parent">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="horizontal"
+            android:padding="10dp">
 
-            </ImageButton>
-            <TextView
-                android:layout_marginLeft="150dp"
-                android:textColor="#FDFDFC"
-                android:textSize="13sp"
-                android:text="NOW PLAYING LIST "
-                android:layout_gravity="center"
+            <EditText
+                android:id="@+id/editTextTextPersonName"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:ems="10"
+                android:layout_marginLeft="20dp"
+                android:hint="Viết bình luận"
+                android:textColor="#FFFFFF"
+                android:inputType="textPersonName"
+                android:text="" />
 
-            </TextView>
-            <ImageButton
-                android:id="@+id/imgButtonList"
-                android:layout_marginLeft="0dp"
-                android:scaleType="fitXY"
-                android:background="@null"
-                android:layout_width="25dp"
-                android:layout_height="25dp"
-                android:src="@drawable/iconloved"></ImageButton>
-
+            <Button
+                android:id="@+id/button"
+                android:layout_width="30dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="#FFFFFF"
+                android:layout_marginRight="20dp"
+                android:layout_marginLeft="20dp"
+                android:text="Gửi" />
         </LinearLayout>
+        </ScrollView>
+
+        <!--        <LinearLayout-->
+<!--            android:orientation="horizontal"-->
+<!--            android:layout_marginTop="-5dp"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content">-->
+<!--            <ImageButton-->
+<!--                android:id="@+id/imgButtonLove"-->
+<!--                android:scaleType="fitXY"-->
+<!--                android:layout_marginLeft="20dp"-->
+<!--                android:layout_marginRight="60dp"-->
+<!--                android:background="@null"-->
+<!--                android:layout_width="25dp"-->
+<!--                android:layout_height="25dp"-->
+<!--                android:src="@drawable/iconloved">-->
+
+<!--            </ImageButton>-->
+<!--            <TextView-->
+<!--                android:layout_marginLeft="150dp"-->
+<!--                android:textColor="#FDFDFC"-->
+<!--                android:textSize="13sp"-->
+<!--                android:text="NOW PLAYING LIST "-->
+<!--                android:layout_gravity="center"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content">-->
+
+<!--            </TextView>-->
+<!--            <ImageButton-->
+<!--                android:id="@+id/imgButtonList"-->
+<!--                android:layout_marginLeft="0dp"-->
+<!--                android:scaleType="fitXY"-->
+<!--                android:background="@null"-->
+<!--                android:layout_width="25dp"-->
+<!--                android:layout_height="25dp"-->
+<!--                android:src="@drawable/iconloved"></ImageButton>-->
+
+<!--        </LinearLayout>-->
 
     </LinearLayout>
 

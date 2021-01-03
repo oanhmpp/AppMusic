@@ -8,12 +8,14 @@ import androidx.fragment.app.FragmentPagerAdapter;
 import androidx.viewpager.widget.ViewPager;
 
 import android.annotation.TargetApi;
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 
 import com.example.appmusic.Adapter.MainViewPagerAdapter;
 import com.example.appmusic.Fragment.Fragment_Find;
 import com.example.appmusic.Fragment.Fragment_Home;
+import com.example.appmusic.Model.User;
 import com.example.appmusic.R;
 import com.google.android.material.tabs.TabLayout;
 
@@ -24,11 +26,18 @@ public class MainActivity extends AppCompatActivity {
     private ViewPager viewPager;
     private Toolbar toolbar;
     private TabLayout tabLayout;
+
+    ArrayList<User> arrUser;
+
     @TargetApi(Build.VERSION_CODES.O)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Intent intent = getIntent();
+        arrUser = (ArrayList<User>) intent.getSerializableExtra("user");
+
         tabLayout = findViewById(R.id.tabs);
         viewPager = findViewById(R.id.viewpager);
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());

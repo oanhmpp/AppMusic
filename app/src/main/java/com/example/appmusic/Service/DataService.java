@@ -7,6 +7,7 @@ import com.example.appmusic.Model.Category_Theme;
 import com.example.appmusic.Model.PlayList;
 import com.example.appmusic.Model.Song;
 import com.example.appmusic.Model.Theme;
+import com.example.appmusic.Model.User;
 //import com.example.appmusic.Model.PlayList;
 import java.util.List;
 
@@ -65,4 +66,11 @@ public interface DataService {
     @FormUrlEncoded
     @POST("Server/CategoryByTheme.php")
     Call<List<Category>> getCactegoryByTheme(@Field("idTheme") String idTheme);
+
+    // login, trả về mảng dữ liệu của User
+    // tất cả những biến đưa vào để gửi lên Server phải trùng nhau
+    @FormUrlEncoded
+    @POST("Server/login.php")
+    Call<List<User>> getDataUser(@Field("username") String username, @Field("password") String password);
+
 }

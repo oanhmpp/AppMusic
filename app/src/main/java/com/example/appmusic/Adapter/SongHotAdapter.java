@@ -1,7 +1,6 @@
 package com.example.appmusic.Adapter;
 
 import android.content.Context;
-import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -15,7 +14,6 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.appmusic.Activity.PlayMusicActivity;
 import com.example.appmusic.Model.Song;
 import com.example.appmusic.R;
 import com.example.appmusic.Service.APIServer;
@@ -71,23 +69,22 @@ public class SongHotAdapter extends  RecyclerView.Adapter<SongHotAdapter.ViewHol
             imgDownload = itemView.findViewById(R.id.imgDownload);
             imgLikes = itemView.findViewById(R.id.imgLikes);
             imgSong  = itemView.findViewById(R.id.imgSong);
-
             imgLikes.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-//
+Toast.makeText(context, arrSong.get(getPosition()).getNameSong(), Toast.LENGTH_LONG).show();
                 imgLikes.setImageResource(R.drawable.iconloved);
                     DataService dataService = APIServer.getService();
                     Call<String> callback =dataService.UpdateLikes("1",arrSong.get(getPosition()).getNameSong());
                     callback.enqueue(new Callback<String>() {
                         @Override
                         public void onResponse(Call<String> call, Response<String> response) {
-                            String ketqua =response.body();
-                            if(ketqua.equals("Success")){
-                                Toast.makeText(context,"Da thich",Toast.LENGTH_SHORT).show();
-                            }else{
-                                Toast.makeText(context,"Loi!!",Toast.LENGTH_SHORT).show();
-                            }
+//                            String ketqua =response.body();
+//                            if(ketqua.equals("Success")){
+//                                Toast.makeText(context,"Da thich",Toast.LENGTH_LONG).show();
+//                            }else{
+//                                Toast.makeText(context,"Loi!!",Toast.LENGTH_LONG).show();
+//                            }
                         }
 
                         @Override
@@ -98,17 +95,6 @@ public class SongHotAdapter extends  RecyclerView.Adapter<SongHotAdapter.ViewHol
                     imgLikes.setEnabled(false);
                 }
             });
-
-            // xử lí khi nhấn vào từng item bài hát
-            itemView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    // chuyển dữ liệu qua màn hình play nhạc
-                    Intent intent = new Intent(context, PlayMusicActivity.class);
-                    intent.putExtra("playmusic", arrSong.get(getPosition())); // truyền nguyên đối tượng bài hát qua màn hình Play nhac
-                    context.startActivity(intent);
-                }
-            });
         }
-        }
+    }
 }

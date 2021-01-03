@@ -38,4 +38,7 @@ public interface DataService {
     @FormUrlEncoded
     @POST("Server/listSong.php")
     Call<List<Song>> getDataSongAdver(@Field("IDAdver") String idAdver);
+
+    @GET("listAlbums.php")
+    Call<List<Album>> GetAllAlbum();
 }

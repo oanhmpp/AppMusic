@@ -18,7 +18,9 @@ import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.appmusic.Activity.ListCategorybyThemeActivity;
 import com.example.appmusic.Activity.ListSongActivity;
+import com.example.appmusic.Activity.ListThemeActivity;
 import com.example.appmusic.Adapter.ListCategoryByThemeAdapter;
 import com.example.appmusic.Model.Category;
 import com.example.appmusic.Model.Category_Theme;
@@ -46,13 +48,22 @@ public class Fragment_Category_Theme extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
-        Log.d("GGGGGGGGG","fragmnet theme category today");
+//        Log.d("GGGGGGGGG","fragmnet theme category today");
         view = inflater.inflate(R.layout.fragment_theme_category_today,container,false);
 
         // ánh xạ view
         txtViewMore = view.findViewById(R.id.txtViewMoreThemeCategory);
-        // sự kiện khi nhấn xem thêm ở chủ đề và thể loại
+
         horizontalScrollView =view.findViewById(R.id.horizontal_scollview);
+        // sự kiện khi nhấn xem thêm ở chủ đề và thể loại
+        txtViewMore.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getActivity(), ListThemeActivity.class);
+//                Log.d("hhhhh","intent");
+                startActivity(intent);
+            }
+        });
         getData();
         return view;
     }
@@ -104,6 +115,17 @@ public class Fragment_Category_Theme extends Fragment {
                     cardView.addView(imageView);
                     //đưa vào trong phần linear
                     linearLayout.addView(cardView);
+
+                    // bắt sự kiện cho mỗi chủ đề
+                    final int finalI = i;
+                    imageView.setOnClickListener(new View.OnClickListener() {
+                        @Override
+                        public void onClick(View v) {
+                            Intent intent=new Intent(getActivity(), ListCategorybyThemeActivity.class);
+                            intent.putExtra("Theme",themesArrayList.get(finalI));
+                            startActivity(intent);
+                        }
+                    });
                 }
 
                 //Phần thể loại

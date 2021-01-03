@@ -2,9 +2,11 @@ package com.example.appmusic.Service;
 
 import com.example.appmusic.Model.Advertisement;
 import com.example.appmusic.Model.Album;
+import com.example.appmusic.Model.Category;
 import com.example.appmusic.Model.Category_Theme;
 import com.example.appmusic.Model.PlayList;
 import com.example.appmusic.Model.Song;
+import com.example.appmusic.Model.Theme;
 //import com.example.appmusic.Model.PlayList;
 import java.util.List;
 
@@ -56,4 +58,11 @@ public interface DataService {
     @FormUrlEncoded
     @POST("Server/listSong.php")
     Call<List<Song>> getListCategoryByTheme(@Field("idCategory") String idCategory);
+
+    @GET("Server/AllTheme.php")
+    Call<List<Theme>> getAllThemes();
+
+    @FormUrlEncoded
+    @POST("Server/CategoryByTheme.php")
+    Call<List<Category>> getCactegoryByTheme(@Field("idTheme") String idTheme);
 }

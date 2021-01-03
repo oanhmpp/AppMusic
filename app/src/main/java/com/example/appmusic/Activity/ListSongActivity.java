@@ -79,7 +79,6 @@ public class ListSongActivity extends AppCompatActivity {
         // nếu TheLoai tồn tại và tên the loai ko bằng rỗng
         if (category != null && !category.getNameCategory().equals("")) {
             setValueInView(category.getNameCategory(), category.getImageCategory());
-//            Log.d("AAAAA",category.getImageCategory());
             getDataCategory(category.getIDCategory());
         }
     }

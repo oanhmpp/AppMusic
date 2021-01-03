@@ -2,7 +2,9 @@ package com.example.appmusic.Model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Theme {
+import java.io.Serializable;
+
+public class Theme implements Serializable {
 
     @SerializedName("IDTheme")
     @Expose

@@ -22,7 +22,7 @@
         <TextView
             android:id="@+id/txtViewMoreThemeCategory"
             android:textSize="18sp"
-            android:textColor="#F70202"
+            android:textColor="#913677"
             android:layout_alignParentRight="true"
             android:text="Xem Thêm"
             android:layout_width="wrap_content"

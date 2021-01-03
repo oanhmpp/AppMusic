@@ -9,7 +9,7 @@
     <!--Thường layout danh sach chỉ có 1 thanh tool bar và 1 recyleview để hiển thị data-->
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolBarTheme"
-        android:background="@color/colorPrimary"
+        android:background="@drawable/custom_background_banner"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:theme="@style/ThemeOverlay.AppCompat.Light">
@@ -17,7 +17,7 @@
     </androidx.appcompat.widget.Toolbar>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rvListTheme"
+        android:id="@+id/recyclerviewListTheme"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

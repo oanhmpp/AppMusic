@@ -21,7 +21,6 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 public class ListCategoryByThemeAdapter extends RecyclerView.Adapter<ListCategoryByThemeAdapter.ViewHolder>
-//        extends RecyclerView.Adapter<ListCategoryByThemeAdapter.ViewHolder>
 {
     Context context;
     ArrayList<Category> listCategory;
@@ -37,7 +36,7 @@ public class ListCategoryByThemeAdapter extends RecyclerView.Adapter<ListCategor
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
         //gắn layout
-        View view = inflater.inflate(R.layout.line_theme_category_today, parent, false);
+        View view = inflater.inflate(R.layout.line_category_by_theme, parent, false);
         //sau khi ánh xạ xog biến view sẽ gắn vào itemview
         return new ViewHolder(view);
     }
@@ -60,25 +59,32 @@ public class ListCategoryByThemeAdapter extends RecyclerView.Adapter<ListCategor
 
     // View Holder để tăng tốc việc ánh xạ lại cho View
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView txtNameCategoryByTheme, txtAuthorCategoryByTheme;
+        TextView txtNameCategoryByTheme;
         ImageView imgCategoryByTheme;
 
         public ViewHolder( View itemView) {
             super(itemView);
-            imgCategoryByTheme = itemView.findViewById(R.id.imgThemeCategory);
-            txtNameCategoryByTheme = itemView.findViewById(R.id.txtNameCategoryTheme);
-//            txtAuthorCategoryByTheme = itemView.findViewById(R.id.txtAuthorCategoryByTheme);
-
+            imgCategoryByTheme = itemView.findViewById(R.id.imageviewCategoryByTheme);
+            txtNameCategoryByTheme = itemView.findViewById(R.id.textviewNameCategoryByTheme);
 
             // sự kiện khi nhấn vào hình từng ietm trong Tất cả các chủ đề (phần mở rộng bên trong)
             // Nó sẽ chuyển qua màn hình các thể loại tương ứng với chủ đề đó
-            imgCategoryByTheme.setOnClickListener(new View.OnClickListener() {
+//            imgCategoryByTheme.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    // gửi data và chuyển qua màn hình danh sách các bài hát
+//                    Intent intent = new Intent(context, ListSongActivity.class);
+////                    intent.putExtra("idtheloai", listCategory.get(getPosition()));// key put vào trùng với key playlist
+//                    context.startActivity(intent);
+//                }
+//            });
+            //bắt sự kiện cho phần item trong chi tiết của danh sáh các chủ đề
+            itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    // gửi data và chuyển qua màn hình danh sách các bài hát
-                    Intent intent = new Intent(context, ListSongActivity.class);
-//                    intent.putExtra("idtheloai", listCategory.get(getPosition()));// key put vào trùng với key playlist
-                    context.startActivity(intent);
+                  Intent intent=new Intent(context,ListSongActivity.class);
+                  intent.putExtra("idCategory",listCategory.get(getPosition()));
+                  context.startActivity(intent);
                 }
             });
         }

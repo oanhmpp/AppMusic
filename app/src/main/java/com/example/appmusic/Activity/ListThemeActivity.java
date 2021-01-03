@@ -1,43 +1,80 @@
 package com.example.appmusic.Activity;
 
-import androidx.appcompat.app.AppCompatActivity;
+import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 
-//import android.graphics.Color;
-//import android.os.Bundle;
-//import android.view.View;
-//
-//import androidx.appcompat.app.AppCompatActivity;
-//import androidx.appcompat.widget.Toolbar;
-//import androidx.recyclerview.widget.GridLayoutManager;
-//import androidx.recyclerview.widget.RecyclerView;
-//
-//import com.example.appmusic.Adapter.ListThemeAdapter;
-//import com.example.appmusic.Model.Theme;
-//import com.example.appmusic.R;
-//import com.example.appmusic.Service.APIServer;
-//import com.example.appmusic.Service.DataService;
-//
-//import java.util.ArrayList;
-//import java.util.List;
-//
-//import retrofit2.Call;
-//import retrofit2.Callback;
-//import retrofit2.Response;
-//
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.example.appmusic.Adapter.ListThemeAdapter;
+import com.example.appmusic.Model.Theme;
+import com.example.appmusic.R;
+import com.example.appmusic.Service.APIServer;
+import com.example.appmusic.Service.DataService;
+
+import java.util.ArrayList;
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
+
 public class ListThemeActivity extends AppCompatActivity {
-//    Toolbar toolbar;
-//    RecyclerView rvListTheme;
-//    ListThemeAdapter ListThemeAdapter;
+    Toolbar toolbarAllTheme;
+    RecyclerView recyclerviewListTheme;
+    ListThemeAdapter listThemeAdapter; // gọi lại lớp adapter
 //    ArrayList<Theme> listTheme;
 //
-//    @Override
-//    protected void onCreate(Bundle savedInstanceState) {
-//        super.onCreate(savedInstanceState);
-//        setContentView(R.layout.activity_list_theme);
-//        addControls();
-//        getDataAllChuDe();
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_list_theme);
+        addControls();
+        getDataTheme();
 //        addEvents();
-//    }
+    }
+
+    private void getDataTheme() {
+        DataService dataService= APIServer.getService();
+        Call<List<Theme>> call=dataService.getAllThemes();
+        call.enqueue(new Callback<List<Theme>>() {
+            @Override
+            public void onResponse(Call<List<Theme>> call, Response<List<Theme>> response) {
+                ArrayList<Theme> arrayListTheme= (ArrayList<Theme>) response.body();
+//                Log.d("HHHHHHHHHHH",arrayListTheme.get(0).getNameTheme());
+                listThemeAdapter=new ListThemeAdapter(ListThemeActivity.this,arrayListTheme);
+                //hiển thị viewgroup
+                recyclerviewListTheme.setLayoutManager(new GridLayoutManager(ListThemeActivity.this,1));
+                recyclerviewListTheme.setAdapter(listThemeAdapter);
+            }
+
+            @Override
+            public void onFailure(Call<List<Theme>> call, Throwable t) {
+
+            }
+        });
+
+    }
+
+    private void addControls() {
+        recyclerviewListTheme =findViewById(R.id.recyclerviewListTheme);
+        toolbarAllTheme=findViewById(R.id.toolBarTheme);
+        setSupportActionBar(toolbarAllTheme);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true); // nút mũi tên quay lại
+        getSupportActionBar().setTitle("Danh sách các chủ đề");
+        toolbarAllTheme.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+    }
+
+
 //
 //    private void addEvents() {
 //        toolbar.setTitleTextColor(Color.WHITE); // màu chữ cho ToolBar
@@ -80,14 +117,5 @@ public class ListThemeActivity extends AppCompatActivity {
 //        });
 //    }
 //
-//    private void addControls() {
-//        toolbar = findViewById(R.id.toolBarChuDe);
-//        rvDanhSachChuDe = findViewById(R.id.rvDanhSachChuDe);
-//        // tạo cái nút trên thanh toolbar để quay về
-//        // vì đã xoá action bar đi rồi nên dùng getSupport
-//        setSupportActionBar(toolbar); // thay thế tool bar vì đã bỏ action bar
-//        getSupportActionBar().setDisplayHomeAsUpEnabled(true); // nút mũi tên quay lại
-//        getSupportActionBar().setTitle("List ChuDe");
-//
-//    }
+
 }

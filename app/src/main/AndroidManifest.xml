@@ -11,15 +11,20 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity.ListAlbumActivity"></activity>
-        <activity android:name=".Activity.listAlbumsActivity" />
-        <activity android:name=".Activity.ListSongActivity" />
-        <activity android:name=".Activity.MainActivity">
+        <activity android:name=".Activity.LoginActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".Activity.PlayMusicActivity" />
+        <activity android:name=".Activity.ListPlayListsActivity" />
+        <activity android:name=".Activity.ListSongActivity" />
+        <activity android:name=".Activity.ListThemeActivity" />
+        <activity android:name=".Activity.ListCategorybyThemeActivity" />
+        <activity android:name=".Activity.MainActivity">
+
         </activity>
     </application>
 

@@ -1,9 +1,7 @@
 package com.example.appmusic.Model;
-
+import java.util.List;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
-
-import java.util.List;
 
 public class Category_Theme {
 
@@ -29,4 +27,5 @@ public class Category_Theme {
     public void setTheme(List<Theme> theme) {
         this.theme = theme;
     }
+
 }

@@ -2,9 +2,12 @@ package com.example.appmusic.Service;
 
 import com.example.appmusic.Model.Advertisement;
 import com.example.appmusic.Model.Album;
+import com.example.appmusic.Model.Category;
 import com.example.appmusic.Model.Category_Theme;
 import com.example.appmusic.Model.PlayList;
 import com.example.appmusic.Model.Song;
+import com.example.appmusic.Model.Theme;
+import com.example.appmusic.Model.User;
 //import com.example.appmusic.Model.PlayList;
 import java.util.List;
 
@@ -39,6 +42,35 @@ public interface DataService {
     @POST("Server/listSong.php")
     Call<List<Song>> getDataSongAdver(@Field("IDAdver") String idAdver);
 
-    @GET("listAlbums.php")
-    Call<List<Album>> GetAllAlbum();
+    // lay du lieu playlist
+    @FormUrlEncoded
+    @POST("Server/listSong.php")
+    Call<List<Song>> getDataPlaylist(@Field("IDPlaylist") String idPlaylist);
+
+    @GET("Server/listPlaylistssss.php")
+    Call<List<PlayList>> getListPlayLists () ;
+
+    @FormUrlEncoded
+    @POST("updatelikes.php")
+    Call<String> UpdateLikes(@Field("likes") String likes,@Field("IDSong") String IDSong);
+//    $_POST['$IDSong']
+
+    //sự kiện thể loại
+    @FormUrlEncoded
+    @POST("Server/listSong.php")
+    Call<List<Song>> getListCategoryByTheme(@Field("idCategory") String idCategory);
+
+    @GET("Server/AllTheme.php")
+    Call<List<Theme>> getAllThemes();
+
+    @FormUrlEncoded
+    @POST("Server/CategoryByTheme.php")
+    Call<List<Category>> getCactegoryByTheme(@Field("idTheme") String idTheme);
+
+    // login, trả về mảng dữ liệu của User
+    // tất cả những biến đưa vào để gửi lên Server phải trùng nhau
+    @FormUrlEncoded
+    @POST("Server/login.php")
+    Call<List<User>> getDataUser(@Field("username") String username, @Field("password") String password);
+
 }

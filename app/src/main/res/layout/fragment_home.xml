@@ -35,7 +35,14 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
-<!--        album hot-->
+        <!--        album hot-->
+        <fragment
+            android:id="@+id/fragment_CategoryByTheme"
+            android:name="com.example.appmusic.Fragment.Fragment_Category_Theme"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+<!--        chủ đề và thể loại-->
         <fragment
             android:id="@+id/fragment_Albumhot"
             android:name="com.example.appmusic.Fragment.Fragment_Album_Hot"

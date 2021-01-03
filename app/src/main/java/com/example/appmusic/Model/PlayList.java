@@ -3,51 +3,53 @@ package com.example.appmusic.Model;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class PlayList {
+import java.io.Serializable;
 
-@SerializedName("IDPlayList")
-@Expose
-private String iDPlayList;
-@SerializedName("NamePlayList")
-@Expose
-private String namePlayList;
-@SerializedName("Background")
-@Expose
-private String background;
-@SerializedName("ImageIcon")
-@Expose
-private String imageIcon;
+public class PlayList  implements Serializable {
 
-public String getIDPlayList() {
-return iDPlayList;
-}
+    @SerializedName("IDPlayList")
+    @Expose
+    private String iDPlayList;
+    @SerializedName("NamePlayList")
+    @Expose
+    private String namePlayList;
+    @SerializedName("Background")
+    @Expose
+    private String background;
+    @SerializedName("ImageIcon")
+    @Expose
+    private String imageIcon;
 
-public void setIDPlayList(String iDPlayList) {
-this.iDPlayList = iDPlayList;
-}
+    public String getIDPlayList() {
+        return iDPlayList;
+    }
 
-public String getNamePlayList() {
-return namePlayList;
-}
+    public void setIDPlayList(String iDPlayList) {
+        this.iDPlayList = iDPlayList;
+    }
 
-public void setNamePlayList(String namePlayList) {
-this.namePlayList = namePlayList;
-}
+    public String getNamePlayList() {
+        return namePlayList;
+    }
 
-public String getBackground() {
-return background;
-}
+    public void setNamePlayList(String namePlayList) {
+        this.namePlayList = namePlayList;
+    }
 
-public void setBackground(String background) {
-this.background = background;
-}
+    public String getBackground() {
+        return background;
+    }
 
-public String getImageIcon() {
-return imageIcon;
-}
+    public void setBackground(String background) {
+        this.background = background;
+    }
 
-public void setImageIcon(String imageIcon) {
-this.imageIcon = imageIcon;
-}
+    public String getImageIcon() {
+        return imageIcon;
+    }
+
+    public void setImageIcon(String imageIcon) {
+        this.imageIcon = imageIcon;
+    }
 
 }

@@ -29,16 +29,16 @@ import retrofit2.Response;
 
 public class Fragment_Album_Hot extends Fragment {
     View view;
-RecyclerView recyclerViewAlbum;
-TextView txtxemthemalbum;
-AlbumAdapter albumAdapter;
+    RecyclerView recyclerViewAlbum;
+    TextView txtxemthemalbum;
+    AlbumAdapter albumAdapter;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_album_hot, container, false);
     // ánh xạ
         recyclerViewAlbum =view.findViewById(R.id.recycleriewAlbum);
-        txtxemthemalbum=view.findViewById(R.id.textviewmoreAlbum);
+        txtxemthemalbum = view.findViewById(R.id.textviewmoreAlbum);
         txtxemthemalbum.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

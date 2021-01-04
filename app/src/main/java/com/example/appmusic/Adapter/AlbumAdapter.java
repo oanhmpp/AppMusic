@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.appmusic.Activity.ListSongActivity;
 import com.example.appmusic.Model.Album;
 import com.example.appmusic.R;
 import com.squareup.picasso.Picasso;
@@ -56,6 +57,17 @@ public class AlbumAdapter extends  RecyclerView.Adapter<AlbumAdapter.ViewHolder>
         txttenalbum =itemView.findViewById(R.id.textviewtenalbum);
         txtcasialbum =itemView.findViewById(R.id.textviewtencasialbum);
         imghinhAlbum =itemView.findViewById(R.id.imageviewalbum);
+
+        //bắt sự kiện chuyển qua phần Fragment Album Hot
+        itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(context, ListSongActivity.class);
+                intent.putExtra("album", mangalbum.get(getItemCount()));
+                context.startActivity(intent);
+            }
+        });
+
         // sự kiện khi nhấn vào RecyvleView ở phần Album
 //        imghinhAlbum.setOnClickListener(new View.OnClickListener() {
 //            @Override

@@ -73,4 +73,11 @@ public interface DataService {
     @POST("Server/login.php")
     Call<List<User>> getDataUser(@Field("username") String username, @Field("password") String password);
 
+    @FormUrlEncoded
+    @POST("listSong.php")
+    Call<List<Song>> GetListSongByAlbum(@Field("idalbum") String idalbum);
+
+    @GET("listAlbums.php")
+    Call<List<Album>> GetAllAlbum();
+
 }

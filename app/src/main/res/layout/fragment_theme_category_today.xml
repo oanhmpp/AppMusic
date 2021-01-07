@@ -5,7 +5,7 @@
     android:layout_height="wrap_content">
 
     <RelativeLayout
-        android:id="@+id/reChuDeTheLoai"
+        android:id="@+id/reCategoryTheme"
         android:padding="7dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
@@ -36,7 +36,7 @@
     <HorizontalScrollView
         android:id="@+id/horizontal_scollview"
         android:scrollbars="none"
-        android:layout_below="@id/reChuDeTheLoai"
+        android:layout_below="@id/reCategoryTheme"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 

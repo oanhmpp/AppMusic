@@ -18,7 +18,7 @@ import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
 
-public class ListAlbumAdapter extends RecyclerView.Adapter<ListAlbumAdapter.ViewHolder>{
+public class ListAlbumAdapter extends  RecyclerView.Adapter<ListAlbumAdapter.ViewHolder>{
 
     Context context;
     ArrayList<Album> albumArrayList;
@@ -28,18 +28,19 @@ public class ListAlbumAdapter extends RecyclerView.Adapter<ListAlbumAdapter.View
         this.albumArrayList = albumArrayList;
     }
 
+    @NonNull
     @Override
-    public ViewHolder onCreateViewHolder( ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         LayoutInflater inflater = LayoutInflater.from(context);
-        View view = inflater.inflate(R.layout.line_list_album,parent,false);
+        View view = inflater.inflate(R.layout.line_list_album, parent, false);
         return new ViewHolder(view);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Album album = albumArrayList.get(position);
-        Picasso.with(context).load(album.getImageAlbum()).into(holder.imgListAlbum);
-        holder.txtNameListAlbum.setText(album.getNameAlbum());
+        Picasso.with(context).load(album.getImageAlbum()).into(holder.imgallalbum);
+        holder.txttenallalbum.setText(album.getNameAlbum());
     }
 
     @Override
@@ -48,12 +49,12 @@ public class ListAlbumAdapter extends RecyclerView.Adapter<ListAlbumAdapter.View
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder{
-        ImageView imgListAlbum;
-        TextView txtNameListAlbum;
-        public ViewHolder(View itemView) {
+        ImageView imgallalbum;
+        TextView txttenallalbum;
+        public ViewHolder(@NonNull View itemView) {
             super(itemView);
-            imgListAlbum = itemView.findViewById(R.id.imageViewListAlbum);
-            txtNameListAlbum = itemView.findViewById(R.id.textViewNameListAlbum);
+            imgallalbum = itemView.findViewById(R.id.imageviewallalbum);
+            txttenallalbum = itemView.findViewById(R.id.textviewtenalbum);
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {

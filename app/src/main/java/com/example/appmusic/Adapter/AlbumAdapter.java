@@ -63,7 +63,7 @@ public class AlbumAdapter extends  RecyclerView.Adapter<AlbumAdapter.ViewHolder>
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(context, ListSongActivity.class);
-                intent.putExtra("album", mangalbum.get(getItemCount()));
+                intent.putExtra("album", mangalbum.get(getPosition()));
                 context.startActivity(intent);
             }
         });

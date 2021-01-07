@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_margin="5dp"
@@ -11,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
         <ImageView
-            android:id="@+id/imageViewListAlbum"
+            android:id="@+id/imageviewallalbum"
             android:scaleType="centerCrop"
             android:src="@drawable/ic_launcher_background"
             android:layout_width="180dp"
@@ -20,8 +21,8 @@
         </ImageView>
     </FrameLayout>
     <TextView
-        android:id="@+id/textViewNameListAlbum"
-        android:textColor="#FA1707"
+        android:id="@+id/textviewtenalbum"
+        android:textColor="#673AB7"
         android:textSize="15sp"
         android:textStyle="bold"
         android:maxWidth="200dp"
@@ -34,10 +35,10 @@
 
     </TextView>
     <TextView
-        android:id="@+id/txtAuthorDanhSachPlayList"
+        android:id="@+id/txtAuthorListPlayLists"
         android:textColor="#413E3E"
         android:textSize="13sp"
-        android:text="Lưu Duy Thanh"
+        android:text=""
         android:ellipsize="end"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">

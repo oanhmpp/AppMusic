@@ -85,15 +85,15 @@ public class ListSongActivity extends AppCompatActivity {
         }
 
         //nếu album tồn tại va fcos dữ liệu
-        if(album !=null && !album.getNameAlbum().equals("")){
+        if(album != null && !album.getNameAlbum().equals("")){
             setValueInView(album.getNameAlbum(), album.getImageAlbum());
             GetDataAlbum(album.getIDAlbum());
         }
     }
 
     private void GetDataAlbum(String idAlbum) {
-        DataService dataService = APIServer.getService();
-        Call<List<Song>> callback = dataService.GetListSongByAlbum(idAlbum);
+       DataService dataService = APIServer.getService();
+       Call<List<Song>> callback = dataService.GetListSongByAlbum(idAlbum);
         callback.enqueue(new Callback<List<Song>>() {
             @Override
             public void onResponse(Call<List<Song>> call, Response<List<Song>> response) {

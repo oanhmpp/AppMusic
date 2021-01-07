@@ -1,6 +1,5 @@
 package com.example.appmusic.Activity;
 
-import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -25,8 +24,8 @@ import retrofit2.Response;
 
 public class ListAlbumActivity extends AppCompatActivity {
 
-    RecyclerView recyclerViewAlbum;
-    Toolbar toolbarAlbum;
+    RecyclerView recyclerViewAllalbum;
+    Toolbar toolbaralbum;
     ListAlbumAdapter listAlbumAdapter;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,15 +36,17 @@ public class ListAlbumActivity extends AppCompatActivity {
     }
 
     private void GetData() {
-        DataService dataservice = APIServer.getService();
-        Call<List<Album>> callback = dataservice.GetAllAlbum();
+        DataService dataService = APIServer.getService();
+        Log.d("tha","sda");
+        Call<List<Album>> callback = dataService.GetAllAlbum();
         callback.enqueue(new Callback<List<Album>>() {
+
             @Override
             public void onResponse(Call<List<Album>> call, Response<List<Album>> response) {
-                ArrayList<Album> arrAlbum = (ArrayList<Album>) response.body();
-                listAlbumAdapter = new ListAlbumAdapter(ListAlbumActivity.this, arrAlbum);
-                recyclerViewAlbum.setLayoutManager(new GridLayoutManager(ListAlbumActivity.this,2));
-                recyclerViewAlbum.setAdapter(listAlbumAdapter);
+                ArrayList<Album> mangalbum = (ArrayList<Album>) response.body();
+                listAlbumAdapter = new ListAlbumAdapter(ListAlbumActivity.this, mangalbum);
+                recyclerViewAllalbum.setLayoutManager(new GridLayoutManager(ListAlbumActivity.this, 2));
+                recyclerViewAllalbum.setAdapter(listAlbumAdapter);
             }
 
             @Override
@@ -56,12 +57,12 @@ public class ListAlbumActivity extends AppCompatActivity {
     }
 
     private void init() {
-        recyclerViewAlbum = findViewById(R.id.recyclerviewAlbum);
-        toolbarAlbum = findViewById(R.id.toolBarAlbum);
-        setSupportActionBar(toolbarAlbum);
+        recyclerViewAllalbum = findViewById(R.id.recycleriewAllAlbum);
+        toolbaralbum = findViewById(R.id.toolbarAllAlbum);
+        setSupportActionBar(toolbaralbum);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-        getSupportActionBar().setTitle("All Album");
-        toolbarAlbum.setNavigationOnClickListener(new View.OnClickListener() {
+        getSupportActionBar().setTitle("All Albums");
+        toolbaralbum.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 finish();

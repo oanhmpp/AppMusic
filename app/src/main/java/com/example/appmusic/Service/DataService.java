@@ -74,10 +74,10 @@ public interface DataService {
     Call<List<User>> getDataUser(@Field("username") String username, @Field("password") String password);
 
     @FormUrlEncoded
-    @POST("listSong.php")
+    @POST("Server/listSong.php")
     Call<List<Song>> GetListSongByAlbum(@Field("idalbum") String idalbum);
 
-    @GET("listAlbums.php")
+    @GET("Server/listAlbums.php")
     Call<List<Album>> GetAllAlbum();
 
 }

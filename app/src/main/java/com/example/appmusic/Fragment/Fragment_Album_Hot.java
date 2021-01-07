@@ -2,6 +2,7 @@ package com.example.appmusic.Fragment;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -47,7 +48,6 @@ public class Fragment_Album_Hot extends Fragment {
             }
         });
         GetData();
-
         return view;
     }
 

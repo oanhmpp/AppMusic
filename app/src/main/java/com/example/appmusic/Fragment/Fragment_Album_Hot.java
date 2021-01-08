@@ -1,6 +1,8 @@
 package com.example.appmusic.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +14,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.appmusic.Activity.ListAlbumActivity;
 import com.example.appmusic.Adapter.AlbumAdapter;
 import com.example.appmusic.Model.Album;
 import com.example.appmusic.R;
@@ -27,18 +30,24 @@ import retrofit2.Response;
 
 public class Fragment_Album_Hot extends Fragment {
     View view;
-RecyclerView recyclerViewAlbum;
-TextView txtxemthemalbum;
-AlbumAdapter albumAdapter;
+    RecyclerView recyclerViewAlbum;
+    TextView txtxemthemalbum;
+    AlbumAdapter albumAdapter;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_album_hot, container, false);
     // ánh xạ
         recyclerViewAlbum =view.findViewById(R.id.recycleriewAlbum);
-        txtxemthemalbum=view.findViewById(R.id.textviewmoreAlbum);
+        txtxemthemalbum = view.findViewById(R.id.textviewmoreAlbum);
+        txtxemthemalbum.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), ListAlbumActivity.class);
+                startActivity(intent);
+            }
+        });
         GetData();
-
         return view;
     }
 

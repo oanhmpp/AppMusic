@@ -21,6 +21,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.appmusic.Adapter.ListSongAdapter;
 import com.example.appmusic.Model.Advertisement;
+import com.example.appmusic.Model.Album;
 import com.example.appmusic.Model.Category;
 import com.example.appmusic.Model.PlayList;
 import com.example.appmusic.Model.Song;
@@ -57,6 +58,7 @@ public class ListSongActivity extends AppCompatActivity {
     ListSongAdapter listSongAdapter;
     PlayList playList;
     Category category;
+    Album album;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,6 +83,31 @@ public class ListSongActivity extends AppCompatActivity {
             setValueInView(category.getNameCategory(), category.getImageCategory());
             getDataCategory(category.getIDCategory());
         }
+
+        //nếu album tồn tại va fcos dữ liệu
+        if(album != null && !album.getNameAlbum().equals("")){
+            setValueInView(album.getNameAlbum(), album.getImageAlbum());
+            GetDataAlbum(album.getIDAlbum());
+        }
+    }
+
+    private void GetDataAlbum(String idAlbum) {
+       DataService dataService = APIServer.getService();
+       Call<List<Song>> callback = dataService.GetListSongByAlbum(idAlbum);
+        callback.enqueue(new Callback<List<Song>>() {
+            @Override
+            public void onResponse(Call<List<Song>> call, Response<List<Song>> response) {
+                arrSong = (ArrayList<Song>) response.body();
+                listSongAdapter = new ListSongAdapter(ListSongActivity.this, arrSong);
+                recyclerViewListSong.setLayoutManager(new LinearLayoutManager(ListSongActivity.this, RecyclerView.VERTICAL, false));
+                recyclerViewListSong.setAdapter(listSongAdapter);
+            }
+
+            @Override
+            public void onFailure(Call<List<Song>> call, Throwable t) {
+
+            }
+        });
     }
 
     private void getDataCategory(String idCategory) {
@@ -227,6 +254,11 @@ public class ListSongActivity extends AppCompatActivity {
             }
             if (intent.hasExtra("idCategory")) {
                 category = (Category) intent.getSerializableExtra("idCategory");
+
+            }
+
+            if(intent.hasExtra("album")){
+                album = (Album) intent.getSerializableExtra("album");
 
             }
 

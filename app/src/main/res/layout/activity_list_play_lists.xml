@@ -6,9 +6,17 @@
     android:layout_height="match_parent"
     tools:context=".Activity.ListPlayListsActivity">
 
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolBarPlayList"
+        android:background="@color/colorPrimary"
+        app:popupTheme="@style/ThemeOverlay.AppCompat.Light"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize">
 
+    </androidx.appcompat.widget.Toolbar>
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rvListPlayLists"
+        android:layout_below="@id/toolBarPlayList"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 

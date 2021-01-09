@@ -87,7 +87,7 @@ public class ListPlayListsActivity extends AppCompatActivity {
     }
 
     private void getMapping() {
-//        toolbar = findViewById(R.id.toolBarPlayList);
+        toolbar = findViewById(R.id.toolBarPlayList);
         rvListPlayLists = findViewById(R.id.rvListPlayLists);
     }
 }

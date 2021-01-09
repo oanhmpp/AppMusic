@@ -38,7 +38,7 @@ public class AdminActivity extends AppCompatActivity {
     private void addEvents() {
         setSupportActionBar(toolbar); // thay thế tool bar vì đã bỏ action bar
         getSupportActionBar().setDisplayHomeAsUpEnabled(true); // nút mũi tên quay lại
-        getSupportActionBar().setTitle("Hi admin: " + listUser.get(0).getUserName());
+        getSupportActionBar().setTitle("Hi: " + listUser.get(0).getUserName());
         toolbar.setTitleTextColor(Color.WHITE);
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override

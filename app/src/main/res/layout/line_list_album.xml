@@ -20,9 +20,13 @@
 
         </ImageView>
     </FrameLayout>
+    <RelativeLayout
+
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
     <TextView
         android:id="@+id/textviewtenalbum"
-        android:textColor="#673AB7"
+        android:textColor="#000000"
         android:textSize="15sp"
         android:textStyle="bold"
         android:maxWidth="200dp"
@@ -45,6 +49,6 @@
 
     </TextView>
 
-
+    </RelativeLayout>
 
 </LinearLayout>

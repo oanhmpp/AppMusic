@@ -23,6 +23,10 @@ public class MainViewPagerAdapter extends FragmentPagerAdapter {
     public MainViewPagerAdapter(@NonNull FragmentManager fm, int behavior) {
         super(fm, behavior);
     }
+
+    public MainViewPagerAdapter(FragmentManager manager) {
+        super(manager);
+    }
 //hàm này không được dùng nữa
 //    public MainViewPagerAdapter(FragmentManager supportFragmentManager) {
 //        super(supportFragmentManager);

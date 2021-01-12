@@ -59,22 +59,52 @@ public class MainActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         arrUser = (ArrayList<User>) intent.getSerializableExtra("user");
-
+//gọi tabs dưới màn hình
         tabLayout = findViewById(R.id.tabs);
+        //gọi viewpager
         viewPager = findViewById(R.id.viewpager);
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
+        //thêm tabs
         adapter.addFragment(new Fragment_Home(), "HOME");
         adapter.addFragment(new Fragment_Find(), "FIND");
         viewPager.setAdapter(adapter);
+        //khởi tạo tab
         tabLayout.setupWithViewPager(viewPager);
+
         tabLayout.getTabAt(0).setIcon(R.drawable.icontrangchu);
         tabLayout.getTabAt(1).setIcon(R.drawable.iconsearch);
+
         addControls();
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_Home()).commit();
             navigationView.setCheckedItem(R.id.nav_home);
         }
         addEvents();
+        addEvensTabLayout();
+    }
+//sự kiện khi nhấn tab dưới (chưa ra)
+    private void addEvensTabLayout() {
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                switch(tab.getPosition()) {
+                    case 0:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_Home()).commit();
+                        break;
+
+                }
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
     }
 
     private void addEvents() {
@@ -130,7 +160,7 @@ public class MainActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolBarMain);
         setSupportActionBar(toolbar);
         if (arrUser != null && arrUser.size() > 0) {
-            getSupportActionBar().setTitle("Hi user: " + arrUser.get(0).getUserName());
+            getSupportActionBar().setTitle("Hello: " + arrUser.get(0).getUserName());
         }
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);

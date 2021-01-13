@@ -3,6 +3,7 @@
     package="com.example.appmusic">
 
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
         android:allowBackup="true"
@@ -11,7 +12,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Activity.ListAlbumActivity"></activity>
+        <activity android:name=".Admin.Update_Song_Activity"></activity>
+        <activity android:name=".Admin.Manager_All_Songs_Activity" />
+        <activity android:name=".Admin.Manager_Songs_Activity" />
+        <activity android:name=".Admin.AddUserActivity" />
+        <activity android:name=".Admin.Update_User_Activity" />
+        <activity android:name=".Admin.Manager_User_Activity" />
+        <activity android:name=".Activity.ListAlbumActivity" />
         <activity android:name=".Admin.AdminActivity" />
         <activity android:name=".Activity.LoginActivity">
             <intent-filter>

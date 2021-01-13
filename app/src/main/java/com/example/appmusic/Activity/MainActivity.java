@@ -1,8 +1,10 @@
 package com.example.appmusic.Activity;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -13,10 +15,14 @@ import android.annotation.TargetApi;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.view.MenuItem;
 
 import com.example.appmusic.Adapter.MainViewPagerAdapter;
+import com.example.appmusic.Fragment.Fragment_Create_Playlists;
 import com.example.appmusic.Fragment.Fragment_Find;
 import com.example.appmusic.Fragment.Fragment_Home;
+import com.example.appmusic.Fragment.Fragment_Playlist;
+import com.example.appmusic.Fragment.Fragment_Profile_Group;
 import com.example.appmusic.Model.User;
 import com.example.appmusic.R;
 import com.google.android.material.bottomappbar.BottomAppBar;
@@ -68,6 +74,55 @@ public class MainActivity extends AppCompatActivity {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_Home()).commit();
             navigationView.setCheckedItem(R.id.nav_home);
         }
+        addEvents();
+    }
+
+    private void addEvents() {
+        FragmentManager manager= getSupportFragmentManager();
+        MainViewPagerAdapter mainViewPagerAdapter = new MainViewPagerAdapter(manager);
+
+        mainViewPagerAdapter.addFragment(new Fragment_Home(), "Home");
+        mainViewPagerAdapter.addFragment(new Fragment_Playlist(), "Search");
+        viewPager.setAdapter(mainViewPagerAdapter); // set cho view pager
+
+        navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+            @Override
+            public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+                switch (menuItem.getItemId()) {
+                    case R.id.nav_home:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_Home()).commit();
+                        break;
+                    case R.id.nav_profile:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_Profile_Group()).commit();
+                        break;
+                    case R.id.nav_playlist:
+                        // bắt buộc phải đăng nhập mới cho tạo playlist
+                        if (arrUser != null && arrUser.size() > 0) {
+                            getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_Create_Playlists()).commit();
+                            break;
+                        } else {
+                            // chưa có dữ liệu thì gửi qua trang login
+                            Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                            //intent.putExtra("state", state);
+                            startActivity(intent);
+                        }
+                    case R.id.nav_favorite:
+                        break;
+                    case R.id.nav_downloaded:
+                        break;
+                    case R.id.nav_send:
+                        break;
+                    case R.id.nav_logout:
+                        Intent intent = new Intent(MainActivity.this, LoginActivity.class);
+                        startActivity(intent);
+                        break;
+
+                }
+                //sau khi mở thì tắt menu bên trái
+                drawerLayout.closeDrawer(GravityCompat.START);
+                return true;
+            }
+        });
     }
 
     private void addControls() {

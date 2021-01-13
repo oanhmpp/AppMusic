@@ -20,6 +20,12 @@ public class User implements Serializable {
     @Expose
     private String admin;
 
+    public User(String userName, String password, String admin) {
+        this.userName = userName;
+        this.password = password;
+        this.admin = admin;
+    }
+
     public String getUserName() {
         return userName;
     }

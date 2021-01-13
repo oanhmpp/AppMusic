@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.example.appmusic.Admin.AdminActivity;
 import com.example.appmusic.Model.User;
 import com.example.appmusic.R;
 import com.example.appmusic.Service.APIServer;
@@ -50,16 +51,16 @@ public class LoginActivity extends AppCompatActivity {
                         public void onResponse(Call<List<User>> call, Response<List<User>> response) {
                             ArrayList<User> arrUser = (ArrayList<User>) response.body();
                             if(arrUser.size()>0){
-//                                Log.d("BBBBBBBBBB", arrUser.get(0).getUserName());
-//                                Log.d("BBBBBBBBBB", arrUser.get(0).getPassword());
-//                                Log.d("BBBBBBBBBB", arrUser.get(0).getAdmin());
+                                Log.d("BBBBBBBBBB", arrUser.get(0).getUserName());
+                                Log.d("fffff", arrUser.get(0).getPassword());
+                                Log.d("hhhhh", arrUser.get(0).getAdmin());
 
                                 // nếu là admin thì gửi qua trang cho admin
                                 if (arrUser.get(0).getAdmin().equalsIgnoreCase("1")){
                                     Toast.makeText(LoginActivity.this, "Đăng nhập thành công với tư cách là admin !", Toast.LENGTH_LONG).show();
-//                                    Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
-//                                    intent.putExtra("admin", arrUser);
-//                                    startActivity(intent);
+                                    Intent intent = new Intent(LoginActivity.this, AdminActivity.class);
+                                    intent.putExtra("admin", arrUser);
+                                    startActivity(intent);
                                 }
                                 // nếu là user thì vào giao diện chính
                                 else {
@@ -89,6 +90,7 @@ public class LoginActivity extends AppCompatActivity {
     private void addControl() {
         txtPass = (EditText) findViewById(R.id.txtPassword);
         txtUserName = (EditText) findViewById(R.id.txtUserName);
+
         btnSign = (Button) findViewById(R.id.btnSign);
     }
 

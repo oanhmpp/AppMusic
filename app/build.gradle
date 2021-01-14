@@ -57,6 +57,6 @@ dependencies {
     implementation "com.google.android.material:material:1.0.0"
     implementation "androidx.viewpager:viewpager:1.0.0"
 
-    //Son moi them 9/1
+    //Son moi them 9/1 ( đọc file trên webhost)
     implementation 'com.android.volley:volley:1.1.1'
 }

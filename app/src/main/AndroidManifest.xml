@@ -12,7 +12,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Admin.Update_Song_Activity"></activity>
+        <activity android:name=".Admin.AddSongActivity"></activity>
+        <activity android:name=".Activity.CreateUserActivity" />
+        <activity android:name=".Admin.Update_Song_Activity" />
         <activity android:name=".Admin.Manager_All_Songs_Activity" />
         <activity android:name=".Admin.Manager_Songs_Activity" />
         <activity android:name=".Admin.AddUserActivity" />

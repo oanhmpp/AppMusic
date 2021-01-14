@@ -15,7 +15,9 @@ import android.annotation.TargetApi;
 import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.MenuItem;
+import android.widget.TextView;
 
 import com.example.appmusic.Adapter.MainViewPagerAdapter;
 import com.example.appmusic.Fragment.Fragment_Create_Playlists;
@@ -23,6 +25,7 @@ import com.example.appmusic.Fragment.Fragment_Find;
 import com.example.appmusic.Fragment.Fragment_Home;
 import com.example.appmusic.Fragment.Fragment_Playlist;
 import com.example.appmusic.Fragment.Fragment_Profile_Group;
+import com.example.appmusic.Fragment.Fragment_nav_header;
 import com.example.appmusic.Model.User;
 import com.example.appmusic.R;
 import com.google.android.material.bottomappbar.BottomAppBar;
@@ -33,6 +36,7 @@ import com.google.android.material.tabs.TabLayout;
 
 import java.util.ArrayList;
 import java.util.List;
+
 //import com.felix.bottomnavygation.BottomNav;
 //import com.felix.bottomnavygation.ItemNav;
 public class MainActivity extends AppCompatActivity {
@@ -43,6 +47,10 @@ public class MainActivity extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private BottomAppBar bottomAppBar;
     private ActionBarDrawerToggle drawerToggle; // điều khiển việc đóng mở DrawerLayout
+
+    //khai báo nav_header
+    TextView NavigationUsername, NavigationAdmin;
+    String name="";
 
     NavigationView navigationView;
     NavigationMenuItemView itemNavHome, itemNavSearch, itemNavNoti, itemNavProfile;
@@ -56,9 +64,11 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+//goi intent tu login
         Intent intent = getIntent();
         arrUser = (ArrayList<User>) intent.getSerializableExtra("user");
+
+
 //gọi tabs dưới màn hình
         tabLayout = findViewById(R.id.tabs);
         //gọi viewpager
@@ -78,16 +88,20 @@ public class MainActivity extends AppCompatActivity {
         if (savedInstanceState == null) {
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_Home()).commit();
             navigationView.setCheckedItem(R.id.nav_home);
+
         }
         addEvents();
         addEvensTabLayout();
+//        NavigationUsername.setText(arrUser.get(0).getUserName());
+//        NavigationAdmin.setText(arrUser.get(0).getAdmin());
     }
-//sự kiện khi nhấn tab dưới (chưa ra)
+
+    //sự kiện khi nhấn tab dưới (chưa ra)
     private void addEvensTabLayout() {
         tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
-                switch(tab.getPosition()) {
+                switch (tab.getPosition()) {
                     case 0:
                         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_Home()).commit();
                         break;
@@ -108,7 +122,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void addEvents() {
-        FragmentManager manager= getSupportFragmentManager();
+        FragmentManager manager = getSupportFragmentManager();
         MainViewPagerAdapter mainViewPagerAdapter = new MainViewPagerAdapter(manager);
 
         mainViewPagerAdapter.addFragment(new Fragment_Home(), "Home");
@@ -116,8 +130,15 @@ public class MainActivity extends AppCompatActivity {
         viewPager.setAdapter(mainViewPagerAdapter); // set cho view pager
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {
+
+
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
+//                getSupportFragmentManager().beginTransaction().replace(R.id.nav_view,new Fragment_nav_header()).commit();
+//                Log.d("aaaaaaaaaaa", "toisw ddaay");
+//                NavigationUsername.setText(arrUser.get(0).getUserName());
+//                NavigationAdmin.setText(arrUser.get(0).getAdmin());
+
                 switch (menuItem.getItemId()) {
                     case R.id.nav_home:
                         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_Home()).commit();
@@ -159,14 +180,25 @@ public class MainActivity extends AppCompatActivity {
         // ánh xạ cho phần menu và drawer layout
         toolbar = (Toolbar) findViewById(R.id.toolBarMain);
         setSupportActionBar(toolbar);
+        //ten user
+        NavigationUsername = findViewById(R.id.NavigationUsername);
+        //admin
+        NavigationAdmin = findViewById(R.id.NavigationAdmin);
+//        NavigationUsername.setText(arrUser.get(0).getUserName());
+
         if (arrUser != null && arrUser.size() > 0) {
             getSupportActionBar().setTitle("Hello: " + arrUser.get(0).getUserName());
+//            Log.d("tenusser",arrUser.get(0).getUserName());
+
+//            NavigationUsername.setText(arrUser.get(0).getUserName());
+//            NavigationAdmin.setText(arrUser.get(0).getAdmin());
+
         }
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawerToggle = new ActionBarDrawerToggle(this, drawerLayout, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(drawerToggle);
         drawerToggle.syncState();
-
+        //gọi nav_header ở đây
         navigationView = (NavigationView) findViewById(R.id.nav_view);
         viewPager = (ViewPager) findViewById(R.id.myViewPaper);
 
@@ -189,21 +221,26 @@ public class MainActivity extends AppCompatActivity {
     class ViewPagerAdapter extends FragmentPagerAdapter {
         private final List<Fragment> mList = new ArrayList<>();
         private final List<String> mTitleList = new ArrayList<>();
+
         public ViewPagerAdapter(FragmentManager supportFragmentManager) {
             super(supportFragmentManager);
         }
+
         @Override
         public Fragment getItem(int i) {
             return mList.get(i);
         }
+
         @Override
         public int getCount() {
             return mList.size();
         }
+
         public void addFragment(Fragment fragment, String title) {
             mList.add(fragment);
             mTitleList.add(title);
         }
+
         @Override
         public CharSequence getPageTitle(int position) {
             return mTitleList.get(position);

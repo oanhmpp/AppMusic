@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="176dp"
-    android:background="@color/colorAccent"
+    android:background="@color/colorlogin"
     android:gravity="bottom"
     android:orientation="vertical"
     android:padding="16dp"
@@ -16,12 +16,15 @@
     </ImageView>
 
     <TextView
+        android:id="@+id/NavigationUsername"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Nguyễn Thị Hải Sơn(Admin)"
+        android:textStyle="bold"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     <TextView
+        android:id="@+id/NavigationAdmin"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="17130194@st.hcmuaf.edu.vn">

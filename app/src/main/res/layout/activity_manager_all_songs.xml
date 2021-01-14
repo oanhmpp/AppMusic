@@ -16,13 +16,11 @@
         android:layout_height="?attr/actionBarSize"
         android:theme="@style/ThemeOverlay.AppCompat.Light">
     </androidx.appcompat.widget.Toolbar>
-
-
-
         <ListView
             android:id="@+id/lvManagerSong"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
         </ListView>
+
 </LinearLayout>

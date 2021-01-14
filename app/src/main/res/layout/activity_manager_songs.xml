@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/custom_background_banner"
+    android:background="@color/colorPrimary"
     tools:context=".Admin.Manager_Songs_Activity">
     <LinearLayout
         xmlns:android="http://schemas.android.com/apk/res/android"

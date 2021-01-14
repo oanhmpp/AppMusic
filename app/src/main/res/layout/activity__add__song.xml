@@ -5,11 +5,11 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Admin.Update_Song_Activity">
+    tools:context=".Admin.AddSongActivity">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolBarUpdateBaiHat"
-        android:background="@color/colorPrimary"
+        android:id="@+id/toolBarAddBaiHat"
+        android:background="@color/colorlogin"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:theme="@style/ThemeOverlay.AppCompat.Light">
@@ -21,63 +21,62 @@
         android:textColor="#ffffff"
         android:textSize="30sp"
         android:textStyle="bold"
-        android:text="Update Information"
+        android:text="Add Song"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
     </TextView>
 
     <EditText
-        android:id="@+id/edtChangeName"
+        android:id="@+id/edtName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Tên bài hát"
+        android:hint="Name song"
         android:inputType="textPersonName" />
 
     <EditText
-        android:id="@+id/edtChangeAuthor"
+        android:id="@+id/edtAuthor"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Tên ca sĩ"
+        android:hint="Singer"
         android:inputType="textPersonName" />
 
     <EditText
-        android:id="@+id/edtChangeImage"
+        android:id="@+id/edtImage"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Hình ảnh"
-        android:inputType="textPersonName" />
-
-    <EditText
-        android:id="@+id/edtChangeIDAlbum"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Hình ảnh"
+        android:hint="Image Song"
         android:inputType="textPersonName" />
     <EditText
-        android:id="@+id/edtChangeIDCategory"
+        android:id="@+id/edtIDAlbum"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Hình ảnh"
+        android:hint="Id album"
         android:inputType="textPersonName" />
     <EditText
-        android:id="@+id/edtChangeIDPlayList"
+        android:id="@+id/edtIDCategory"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Hình ảnh"
+        android:hint="Id category"
         android:inputType="textPersonName" />
     <EditText
-        android:id="@+id/edtChangeLinkSong"
+        android:id="@+id/edtIDPlayList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Hình ảnh"
+        android:hint="Id play list"
+        android:inputType="textPersonName" />
+    <EditText
+        android:id="@+id/edtLinkSong"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:hint="LinkSong"
         android:inputType="textPersonName" />
 
     <LinearLayout
@@ -86,18 +85,18 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/btnEdit"
+            android:id="@+id/btnAdd"
             android:textColor="#FFFFFF"
-            android:background="@color/colorlogin"
             android:paddingLeft="30dp"
             android:paddingRight="30dp"
+            android:background="@color/colorlogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Sửa bài hát" />
+            android:text="Add Song" />
 
         <Button
-            android:id="@+id/btnUpdateCancel"
+            android:id="@+id/btnCancel"
             android:paddingLeft="30dp"
             android:paddingRight="30dp"
             android:textColor="#FFFFFF"
@@ -105,7 +104,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Huỷ" />
+            android:text="Cancle" />
     </LinearLayout>
 
 </LinearLayout>

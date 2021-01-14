@@ -36,12 +36,12 @@ public class Song implements Parcelable {
     @Expose
     private String likes;
 
-    public Song(String iDSong, String nameSong,String singer, String imageSong ) {
-        this.iDSong = iDSong;
-        this.nameSong = nameSong;
-        this.singer = singer;
-        this.imageSong = imageSong;
-    }
+//    public Song(String iDSong, String nameSong,String singer, String imageSong ) {
+//        this.iDSong = iDSong;
+//        this.nameSong = nameSong;
+//        this.singer = singer;
+//        this.imageSong = imageSong;
+//    }
 
     public Song(String iDSong, String nameSong, String singer, String imageSong, String iDAlbum, String iDCategory, String iDPlayList, String linkSong) {
         this.iDSong = iDSong;

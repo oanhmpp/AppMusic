@@ -65,7 +65,6 @@ public class Manager_All_Songs_Adapter extends BaseAdapter {
 
         // gán giá trị
         final Song song = listSong.get(i); // lấy ra đối tượng Song
-        //viewHolder.imgSong.setImageResource(account.getImage());
         // dùng thư viện Picasso để load hình ảnh
         Picasso.with(context).load(song.getImageSong()).into(viewHolder.imgManagerSong);
         viewHolder.txtNameManagerSong.setText(song.getNameSong());

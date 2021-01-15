@@ -5,79 +5,57 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".Admin.Update_Song_Activity">
-
+    tools:context=".Activity.CreateUserActivity">
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolBarUpdateBaiHat"
+        android:id="@+id/toolBarCreateUser"
         android:background="@color/colorPrimary"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:theme="@style/ThemeOverlay.AppCompat.Light">
 
     </androidx.appcompat.widget.Toolbar>
+
     <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:background="@color/colorlogin"
         android:gravity="center"
+        android:text="Create Account"
         android:textColor="#ffffff"
         android:textSize="30sp"
-        android:textStyle="bold"
-        android:text="Update Information"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:textStyle="bold">
 
     </TextView>
 
     <EditText
-        android:id="@+id/edtChangeName"
+        android:id="@+id/edtCreateUsername"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Name Song"
+        android:hint="User Name"
         android:inputType="textPersonName" />
 
     <EditText
-        android:id="@+id/edtChangeAuthor"
+        android:id="@+id/edtCreatePassword"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Singer"
-        android:inputType="textPersonName" />
+        android:hint="Password"
+        android:inputType="textPassword" />
 
+    <!--    <EditText-->
+    <!--        android:id="@+id/edtImage"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="wrap_content"-->
+    <!--        android:ems="10"-->
+    <!--        android:hint="Hình ảnh"-->
+    <!--        android:inputType="textPersonName" />-->
     <EditText
-        android:id="@+id/edtChangeImage"
+        android:id="@+id/edtCreateAdmin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Image"
-        android:inputType="textPersonName" />
-
-    <EditText
-        android:id="@+id/edtChangeIDAlbum"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="ID Album"
-        android:inputType="textPersonName" />
-    <EditText
-        android:id="@+id/edtChangeIDCategory"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="ID Category"
-        android:inputType="textPersonName" />
-    <EditText
-        android:id="@+id/edtChangeIDPlayList"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="ID Playlist"
-        android:inputType="textPersonName" />
-    <EditText
-        android:id="@+id/edtChangeLinkSong"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:ems="10"
-        android:hint="Link Song"
+        android:text="0"
         android:inputType="textPersonName" />
 
     <LinearLayout
@@ -86,21 +64,23 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/btnEdit"
-            android:textColor="#FFFFFF"
-            android:background="@color/colorlogin"
+            android:id="@+id/btnCreateUser"
+            android:textColor="#ffffff"
+            android:textStyle="bold"
             android:paddingLeft="30dp"
             android:paddingRight="30dp"
+            android:background="@color/colorlogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Update" />
+            android:text="Create User" />
 
         <Button
-            android:id="@+id/btnUpdateCancel"
+            android:id="@+id/btnCreateCancel"
             android:paddingLeft="30dp"
             android:paddingRight="30dp"
-            android:textColor="#FFFFFF"
+            android:textColor="#ffff"
+            android:textStyle="bold"
             android:background="@color/colorlogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"

@@ -27,7 +27,7 @@ import java.util.Map;
 public class Update_Song_Activity extends AppCompatActivity {
     Toolbar toolbar;
     EditText edtChangeName, edtChangeAuthor, edtChangeImage;
-//    EditText   edtChangeIDAlbum,edtChangeIDCategory,edtChangeIDPlayList,edtChangeLinkSong;
+    EditText   edtChangeIDAlbum,edtChangeIDCategory,edtChangeIDPlayList,edtChangeLinkSong;
     Button btnEdit, btnCancel;
     String urlUpdate="https://oanhnguyen1999.000webhostapp.com/Server/updatesong.php";
 
@@ -38,20 +38,22 @@ public class Update_Song_Activity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity__update__song);
 
-        // lấy dữ liệu từ MainActivity qua
+        // lấy dữ liệu từ Manager All Song Adapter qua
         Intent intent = getIntent();
-        Song baiHat = (Song) intent.getParcelableExtra("data");
+        Song song = (Song) intent.getParcelableExtra("data");
         addcontrols();
 
-        id = baiHat.getIDSong();
+        id = song.getIDSong();
+//lấy giá trị từ csdl xuống
         Toast.makeText(Update_Song_Activity.this, id, Toast.LENGTH_LONG).show();
-        edtChangeName.setText(baiHat.getNameSong().toString().trim());
-        edtChangeAuthor.setText(baiHat.getSinger().toString().trim());
-        edtChangeImage.setText(baiHat.getImageSong().toString().trim());
-//        edtChangeIDAlbum.setText(baiHat.getImageSong().toString().trim());
-//        edtChangeIDCategory.setText(baiHat.getImageSong().toString().trim());
-//        edtChangeIDPlayList.setText(baiHat.getImageSong().toString().trim());
-//        edtChangeLinkSong.setText(baiHat.getImageSong().toString().trim());
+        edtChangeName.setText(song.getNameSong().toString().trim());
+        edtChangeAuthor.setText(song.getSinger().toString().trim());
+        edtChangeImage.setText(song.getImageSong().toString().trim());
+
+        edtChangeIDAlbum.setText(song.getIDAlbum().toString().trim());
+        edtChangeIDCategory.setText(song.getIDCategory().toString().trim());
+        edtChangeIDPlayList.setText(song.getIDPlayList().toString().trim());
+        edtChangeLinkSong.setText(song.getLinkSong().toString().trim());
 
 
         addEvents();
@@ -73,6 +75,7 @@ public class Update_Song_Activity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 finish();
+
             }
         });
         btnEdit.setOnClickListener(new View.OnClickListener() {
@@ -82,12 +85,13 @@ public class Update_Song_Activity extends AppCompatActivity {
                 String name = edtChangeName.getText().toString();
                 String author = edtChangeAuthor.getText().toString();
                 String image = edtChangeImage.getText().toString();
-//                String idalbum = edtChangeIDAlbum.getText().toString();
-//                String idcategory = edtChangeIDCategory.getText().toString();
-//                String idplaylist = edtChangeIDPlayList.getText().toString();
-//                String linksong = edtChangeLinkSong.getText().toString();
 
-                if (name.isEmpty() || author.isEmpty() || image.isEmpty()) {
+                String idalbum = edtChangeIDAlbum.getText().toString();
+                String idcategory = edtChangeIDCategory.getText().toString();
+                String idplaylist = edtChangeIDPlayList.getText().toString();
+                String linksong = edtChangeLinkSong.getText().toString();
+
+                if (name.isEmpty() || author.isEmpty() || image.isEmpty()|| linksong.isEmpty()) {
                     Toast.makeText(Update_Song_Activity.this, "Vui lòng nhập đầy đủ!", Toast.LENGTH_LONG).show();
                 } else {
                     updateSong(urlUpdate);
@@ -128,10 +132,11 @@ public class Update_Song_Activity extends AppCompatActivity {
                 String name = edtChangeName.getText().toString().trim();
                 String author = edtChangeAuthor.getText().toString().trim();
                 String image = edtChangeImage.getText().toString().trim();
-//                String idalbum = edtChangeIDAlbum.getText().toString().trim();
-//                String idcategory = edtChangeIDCategory.getText().toString().trim();
-//                String idplaylist = edtChangeIDPlayList.getText().toString().trim();
-//                String linksong = edtChangeLinkSong.getText().toString().trim();
+
+                String idalbum = edtChangeIDAlbum.getText().toString().trim();
+                String idcategory = edtChangeIDCategory.getText().toString().trim();
+                String idplaylist = edtChangeIDPlayList.getText().toString().trim();
+                String linksong = edtChangeLinkSong.getText().toString().trim();
 
 
 
@@ -141,10 +146,11 @@ public class Update_Song_Activity extends AppCompatActivity {
                 map.put("NameSong", name);
                 map.put("Singer", author);
                 map.put("ImageSong", image);
-//                map.put("IDAlbum",idalbum);
-//                map.put("IDCategory",idcategory);
-//                map.put("IDPlayList",idplaylist);
-//                map.put("LinkSong",linksong);
+
+                map.put("IDAlbum",idalbum);
+                map.put("IDCategory",idcategory);
+                map.put("IDPlayList",idplaylist);
+                map.put("LinkSong",linksong);
 
                 return map;
             }
@@ -157,10 +163,10 @@ public class Update_Song_Activity extends AppCompatActivity {
         edtChangeName = (EditText) findViewById(R.id.edtChangeName);
         edtChangeAuthor = (EditText) findViewById(R.id.edtChangeAuthor);
         edtChangeImage = (EditText) findViewById(R.id.edtChangeImage);
-//        edtChangeIDAlbum=findViewById(R.id.edtChangeIDAlbum);
-//        edtChangeIDCategory=findViewById(R.id.edtChangeIDCategory);
-//        edtChangeIDPlayList=findViewById(R.id.edtChangeIDPlayList);
-//        edtChangeLinkSong=findViewById(R.id.edtChangeLinkSong);
+        edtChangeIDAlbum=findViewById(R.id.edtChangeIDAlbum);
+        edtChangeIDCategory=findViewById(R.id.edtChangeIDCategory);
+        edtChangeIDPlayList=findViewById(R.id.edtChangeIDPlayList);
+        edtChangeLinkSong=findViewById(R.id.edtChangeLinkSong);
 
         btnEdit = (Button) findViewById(R.id.btnEdit);
         btnCancel = (Button) findViewById(R.id.btnUpdateCancel);

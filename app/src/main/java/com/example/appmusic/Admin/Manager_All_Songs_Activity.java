@@ -3,9 +3,12 @@ package com.example.appmusic.Admin;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ListView;
 import android.widget.Toast;
@@ -35,7 +38,6 @@ public class Manager_All_Songs_Activity extends AppCompatActivity {
     String urlData="https://oanhnguyen1999.000webhostapp.com/Server/managerSong.php";
     String urlDelete="https://oanhnguyen1999.000webhostapp.com/Server/deleteSong.php";
     ArrayList<Song> listSong;
-    ArrayList<Song> detailSong;
     Manager_All_Songs_Adapter managerSongAdapter;
 
     @Override
@@ -60,7 +62,7 @@ public class Manager_All_Songs_Activity extends AppCompatActivity {
                         //Log.i("BBBBBBB", response.toString());
                         // trước khi load thì xoá hết cái cũ đi
                         listSong.clear();
-                        detailSong.clear();
+//                        detailSong.clear();
 
                         // đọc data JSON
                         for (int i = 0; i < response.length(); i++) {
@@ -75,8 +77,6 @@ public class Manager_All_Songs_Activity extends AppCompatActivity {
                                 //Toast.makeText(MainActivity.this, name + "\t" + singer + "\t" + image, Toast.LENGTH_LONG).show();
                                 // thêm vào ArrayList
                                 listSong.add(new Song(jsonObject.getString("IDSong"), jsonObject.getString("NameSong"),
-                                        jsonObject.getString("Singer"), jsonObject.getString("ImageSong")));
-                                detailSong.add(new Song(jsonObject.getString("IDSong"), jsonObject.getString("NameSong"),
                                         jsonObject.getString("Singer"), jsonObject.getString("ImageSong"),
                                         jsonObject.getString("IDAlbum"), jsonObject.getString("IDCategory"),
                                         jsonObject.getString("IDPlayList"),jsonObject.getString("LinkSong")));
@@ -144,6 +144,23 @@ public class Manager_All_Songs_Activity extends AppCompatActivity {
         // thêm các request vào hàng đợi yêu cầu và chờ thực hiện
         requestQueue.add(stringRequest);
     }
+    // tạo option menu (thanh MenuBar)
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_add_music, menu);
+        return true;
+    }
+    // hàm xử lý khi chọn menu item nào
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // nếu chon menu add user thì chuyển qua AddSongActivity
+        if (item.getItemId() == R.id.mnuAddSong) {
+            Intent intent = new Intent(Manager_All_Songs_Activity.this, AddSongActivity.class);
+            startActivity(intent);
+
+        }
+        return super.onOptionsItemSelected(item);
+    }
 
     private void addEvents() {
         setSupportActionBar(toolbar); // thay thế tool bar vì đã bỏ action bar
@@ -162,7 +179,6 @@ public class Manager_All_Songs_Activity extends AppCompatActivity {
         toolbar = (Toolbar)findViewById(R.id.toolBarManagerSong);
         lvManagerSong = (ListView) findViewById(R.id.lvManagerSong);
         listSong = new ArrayList<>();
-        detailSong =new ArrayList<>();
 
     }
 }

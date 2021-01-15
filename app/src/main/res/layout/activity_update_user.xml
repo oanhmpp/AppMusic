@@ -68,9 +68,9 @@
 
         <Button
             android:id="@+id/btnUpdateUser"
-            android:textColor="#000000"
+            android:textColor="#ffff"
             android:textStyle="bold"
-            android:background="@drawable/custom_background_banner"
+            android:background="@color/colorlogin"
             android:paddingLeft="30dp"
             android:paddingRight="30dp"
             android:layout_width="wrap_content"
@@ -84,9 +84,9 @@
             android:id="@+id/btnUpdateCancel"
             android:paddingLeft="30dp"
             android:paddingRight="30dp"
-            android:textColor="#000000"
+            android:textColor="#ffff"
             android:textStyle="bold"
-            android:background="@drawable/custom_background_banner"
+            android:background="@color/colorlogin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"

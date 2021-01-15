@@ -120,9 +120,10 @@ public class Manager_User_Adapter extends BaseAdapter {
 
     }
 
-    class ViewHolder {
-        TextView txtUsername, txtPassword;
-        ImageView imgUser, imgEdit, imgRemove;
 
-    }
+}
+class ViewHolder {
+    TextView txtUsername, txtPassword;
+    ImageView imgUser, imgEdit, imgRemove;
+
 }

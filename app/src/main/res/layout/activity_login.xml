@@ -2,7 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#721799"
+    android:background="@color/colorlogin"
     android:orientation="vertical"
     android:scrollbarAlwaysDrawVerticalTrack="true">
 
@@ -11,10 +11,10 @@
         android:id="@+id/txtTitleLogin"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginTop="60dp"
+        android:layout_marginBottom="20dp"
         android:gravity="center_horizontal"
-        android:text="Welcome ^^"
+        android:text="Welcome"
         android:textColor="#fff"
         android:textSize="30sp"
         android:textStyle="bold" />
@@ -47,7 +47,7 @@
                     android:layout_height="40dp"
                     android:drawablePadding="10dp"
                     android:drawableLeft="@drawable/ic_user"
-                    android:drawableTint="#721799"
+                    android:drawableTint="@color/colorlogin"
                     android:hint="User Name"
                     android:inputType="textEmailAddress"
                     android:singleLine="true" />
@@ -64,27 +64,38 @@
                     android:layout_marginTop="16dp"
                     android:drawablePadding="10dp"
                     android:drawableLeft="@drawable/ic_password"
-                    android:drawableTint="#721799"
+                    android:drawableTint="@color/colorlogin"
                     android:hint="Password"
                     android:inputType="textPassword"
                     android:singleLine="true" />
             </com.google.android.material.textfield.TextInputLayout>
-
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_weight="1">
+            <TextView
+                android:id="@+id/txtCreateUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:layout_weight="1"
+                android:text="Create Account" />
             <TextView
                 android:id="@+id/txtForgotPass"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_gravity="right"
                 android:paddingTop="5dp"
+                android:layout_weight="1"
+                android:gravity="right"
                 android:text="Forgot Password?" />
-
+            </LinearLayout>
 
             <Button
                 android:id="@+id/btnSign"
                 android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
                 android:layout_margin="22dp"
-                android:background="#721799"
+                android:background="@color/colorlogin"
                 android:text="Sign in"
                 android:textAllCaps="false"
                 android:textColor="#fff"
@@ -99,7 +110,7 @@
         android:layout_below="@+id/txtTitleLogin"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
-        android:background="#721799"
+        android:background="@color/colorlogin"
         android:elevation="4dp"
         android:scaleType="fitXY"
         android:src="@drawable/zingmp3" />

@@ -5,5 +5,6 @@
     <color name="colorAccent">#03DAC5</color>
     <color name="colorPurple">#a845de</color>
     <color name="lightgray">#ededed</color>
+    <color name="colorlogin">#721799</color>
 
 </resources>

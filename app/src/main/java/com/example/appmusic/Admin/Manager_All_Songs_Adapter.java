@@ -66,7 +66,13 @@ public class Manager_All_Songs_Adapter extends BaseAdapter {
         // gán giá trị
         final Song song = listSong.get(i); // lấy ra đối tượng Song
         // dùng thư viện Picasso để load hình ảnh
-        Picasso.with(context).load(song.getImageSong()).into(viewHolder.imgManagerSong);
+        //chưa test trường hợp chiều dài text bé hơn 5
+        //song.getImageSong().equals(song.getImageSong().length()<5)
+        if(song.getImageSong()==""||song.getImageSong().isEmpty()) {//nếu link ảnh rỗng thì tahy ảnh khác
+            Picasso.with(context).load(R.drawable.ic_person_outline_white_24dp).into(viewHolder.imgManagerSong);
+        }else {
+            Picasso.with(context).load(song.getImageSong()).into(viewHolder.imgManagerSong);
+        }
         viewHolder.txtNameManagerSong.setText(song.getNameSong());
         viewHolder.txtAuthorManagerSong.setText(song.getSinger());
 

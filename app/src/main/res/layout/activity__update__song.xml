@@ -32,7 +32,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Tên bài hát"
+        android:hint="Name Song"
         android:inputType="textPersonName" />
 
     <EditText
@@ -40,7 +40,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Tên ca sĩ"
+        android:hint="Singer"
         android:inputType="textPersonName" />
 
     <EditText
@@ -48,7 +48,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Hình ảnh"
+        android:hint="Image"
         android:inputType="textPersonName" />
 
     <EditText
@@ -56,28 +56,28 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Hình ảnh"
+        android:hint="ID Album"
         android:inputType="textPersonName" />
     <EditText
         android:id="@+id/edtChangeIDCategory"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Hình ảnh"
+        android:hint="ID Category"
         android:inputType="textPersonName" />
     <EditText
         android:id="@+id/edtChangeIDPlayList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Hình ảnh"
+        android:hint="ID Playlist"
         android:inputType="textPersonName" />
     <EditText
         android:id="@+id/edtChangeLinkSong"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
-        android:hint="Hình ảnh"
+        android:hint="Link Song"
         android:inputType="textPersonName" />
 
     <LinearLayout
@@ -94,7 +94,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Sửa bài hát" />
+            android:text="Update" />
 
         <Button
             android:id="@+id/btnUpdateCancel"
@@ -105,7 +105,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="Huỷ" />
+            android:text="Cancle" />
     </LinearLayout>
 
 </LinearLayout>

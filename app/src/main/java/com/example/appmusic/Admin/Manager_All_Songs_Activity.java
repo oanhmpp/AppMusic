@@ -38,7 +38,6 @@ public class Manager_All_Songs_Activity extends AppCompatActivity {
     String urlData="https://oanhnguyen1999.000webhostapp.com/Server/managerSong.php";
     String urlDelete="https://oanhnguyen1999.000webhostapp.com/Server/deleteSong.php";
     ArrayList<Song> listSong;
-//    ArrayList<Song> detailSong;
     Manager_All_Songs_Adapter managerSongAdapter;
 
     @Override
@@ -77,8 +76,6 @@ public class Manager_All_Songs_Activity extends AppCompatActivity {
 
                                 //Toast.makeText(MainActivity.this, name + "\t" + singer + "\t" + image, Toast.LENGTH_LONG).show();
                                 // thêm vào ArrayList
-//                                listSong.add(new Song(jsonObject.getString("IDSong"), jsonObject.getString("NameSong"),
-//                                        jsonObject.getString("Singer"), jsonObject.getString("ImageSong")));
                                 listSong.add(new Song(jsonObject.getString("IDSong"), jsonObject.getString("NameSong"),
                                         jsonObject.getString("Singer"), jsonObject.getString("ImageSong"),
                                         jsonObject.getString("IDAlbum"), jsonObject.getString("IDCategory"),

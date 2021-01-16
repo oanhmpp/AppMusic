@@ -64,7 +64,7 @@ public class AddSongActivity extends AppCompatActivity {
                 String LinkSong=edtLinkSong.getText().toString();
 
                 // kiểm tra người dùng có nhập đầy đủ thông tin hay k?
-                if (name.isEmpty() ||author.isEmpty()) {
+                if (name.isEmpty() ||author.isEmpty()||image.isEmpty()||IDAlbum.isEmpty()||IDCategory.isEmpty()||IDPlayList.isEmpty()||LinkSong.isEmpty()) {
                     Toast.makeText(AddSongActivity.this, "Vui lòng nhập đầy đủ!", Toast.LENGTH_LONG).show();
                 } else {
                     addSong(urlInsertSong);
@@ -89,7 +89,7 @@ public class AddSongActivity extends AppCompatActivity {
                 // phần nhận kết quả
                 if (response.trim().equalsIgnoreCase("Success")) {
                     Toast.makeText(AddSongActivity.this, "Thêm thành công", Toast.LENGTH_LONG).show();
-                    // sau đó chuyển màn hình về MainActivity
+                    // sau đó chuyển màn hình về manager all song activity
                     Intent intent = new Intent(AddSongActivity.this, Manager_All_Songs_Activity.class);
                     startActivity(intent);
 
@@ -106,6 +106,7 @@ public class AddSongActivity extends AppCompatActivity {
         }
         ) {
             // đẩy dữ liệu lên Server
+
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 // lấy giá trị người dùng nhập
@@ -114,6 +115,7 @@ public class AddSongActivity extends AppCompatActivity {
                 String image = edtImage.getText().toString();
 
                 String IDAlbum=edtIDAlbum.getText().toString();
+
                 String IDCategory=edtIDCategory.getText().toString();
                 String IDPlayList=edtIDPlayList.getText().toString();
                 String LinkSong=edtLinkSong.getText().toString();
@@ -123,7 +125,7 @@ public class AddSongActivity extends AppCompatActivity {
                 map.put("name", name); // key khi đẩy data lên phải trùng với key khi viết mã PHP để lấy
                 map.put("singer", author);
                 map.put("image", image);
-
+// đẩy dữ liệu k lên database
                 map.put("IDAlbum",IDAlbum);
                 map.put("IDCategory",IDCategory);
                 map.put("IDPlayList",IDPlayList);
@@ -137,14 +139,14 @@ public class AddSongActivity extends AppCompatActivity {
 
     // ánh xạ các component
     private void addControls() {
-        toolbar = (Toolbar) findViewById(R.id.toolBarAddBaiHat);
+        toolbar = (Toolbar) findViewById(R.id.toolBarAddSong);
         edtName = (EditText) findViewById(R.id.edtName);
         edtAuthor = (EditText) findViewById(R.id.edtAuthor);
         edtImage = (EditText) findViewById(R.id.edtImage);
 
         edtIDAlbum = findViewById(R.id.edtIDAlbum);
         edtIDCategory = findViewById(R.id.edtIDCategory);
-        edtIDPlayList = findViewById(R.id.edtChangeIDPlayList);
+        edtIDPlayList = findViewById(R.id.edtIDPlayList);
         edtLinkSong = findViewById(R.id.edtLinkSong);
 
         btnAdd = (Button) findViewById(R.id.btnAdd);

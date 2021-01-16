@@ -8,7 +8,7 @@
     tools:context=".Admin.AddSongActivity">
 
     <androidx.appcompat.widget.Toolbar
-        android:id="@+id/toolBarAddBaiHat"
+        android:id="@+id/toolBarAddSong"
         android:background="@color/colorlogin"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
@@ -56,21 +56,21 @@
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Id album"
-        android:inputType="textPersonName" />
+        android:inputType="number" />
     <EditText
         android:id="@+id/edtIDCategory"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Id category"
-        android:inputType="textPersonName" />
+        android:inputType="number" />
     <EditText
         android:id="@+id/edtIDPlayList"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:ems="10"
         android:hint="Id play list"
-        android:inputType="textPersonName" />
+        android:inputType="number" />
     <EditText
         android:id="@+id/edtLinkSong"
         android:layout_width="match_parent"

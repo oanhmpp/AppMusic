@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
+import com.example.appmusic.Activity.LoginActivity;
 import com.example.appmusic.Model.User;
 import com.example.appmusic.R;
 
@@ -25,10 +26,12 @@ public class Fragment_nav_header extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.nav_header,container,false);
 //ten user
-        NavigationUsername = view.findViewById(R.id.NavigationUsername);
+        NavigationUsername = view.findViewById(R.id.txtUsername);
+
+        NavigationUsername.setText(LoginActivity.nameUser);
         //admin
-        NavigationAdmin = view.findViewById(R.id.NavigationAdmin);
-        setData();
+//        NavigationAdmin = view.findViewById(R.id.NavigationAdmin);
+//        setData();
         return view;
     }
 

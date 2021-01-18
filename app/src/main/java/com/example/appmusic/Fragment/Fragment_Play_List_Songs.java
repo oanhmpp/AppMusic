@@ -28,8 +28,10 @@ public class Fragment_Play_List_Songs extends Fragment {
         recyclerViewPlayMusic = view.findViewById(R.id.rvListPlayLists);
         if(PlayMusicActivity.arrSong.size()>0){
             playMusicAdapter  = new PlayMusicAdapter(getActivity(), PlayMusicActivity.arrSong);
+
             recyclerViewPlayMusic.setLayoutManager(new LinearLayoutManager(view.getContext(),RecyclerView.VERTICAL,false));
 //            new LinearLayoutManager(getContext(), RecyclerView.VERTICAL, false)
+//            recyclerViewPlayMusic.setLayoutManager(new LinearLayoutManager(getActivity()));
             recyclerViewPlayMusic.setAdapter(playMusicAdapter);
         }
         return view;

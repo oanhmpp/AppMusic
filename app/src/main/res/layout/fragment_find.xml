@@ -3,7 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F8EFA5">
+    tools:context=".Fragment.Fragment_Find">
+
 
 
     <com.google.android.material.appbar.AppBarLayout
@@ -17,19 +18,26 @@
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize" />
 
+
+
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycleviewsearchsong"
+        android:id="@+id/recyclerviewSearchSongSong"
+        android:layout_marginTop="5dp"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginTop="5dp" />
+        android:layout_height="match_parent" >
+
+    </androidx.recyclerview.widget.RecyclerView>
 
     <TextView
         android:id="@+id/textviewnotdata"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:layout_marginTop="10dp"
         android:gravity="center"
-        android:textSize="25sp"
         android:text="Không có dữ liệu bài hát"
-        android:textColor="#FF1100"
-        android:visibility="gone" />
+        android:textColor="#f20"
+        android:textSize="25sp"
+        android:visibility="gone"
+        />
+<!--    android:gravity="center"-->
 </RelativeLayout>

@@ -142,8 +142,8 @@ public class ListCategorybyThemeActivity extends AppCompatActivity {
 //                rvDanhSachTheLoaiTheoChuDe.setItemAnimator(new DefaultItemAnimator());
 //                rvDanhSachTheLoaiTheoChuDe.setAdapter(danhSachTheLoaiTheoChuDeAdapter);
 //
-            }
-//
+    }
+    //
 //            // sự kiện thất bại
 //            @Override
 //            public void onFailure(Call<List<TheLoai>> call, Throwable t) {

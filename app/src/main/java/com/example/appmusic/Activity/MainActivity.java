@@ -25,6 +25,7 @@ import com.example.appmusic.Fragment.Fragment_Find;
 import com.example.appmusic.Fragment.Fragment_Home;
 import com.example.appmusic.Fragment.Fragment_Playlist;
 import com.example.appmusic.Fragment.Fragment_Profile_Group;
+import com.example.appmusic.Fragment.Fragment_SongHot;
 import com.example.appmusic.Fragment.Fragment_nav_header;
 import com.example.appmusic.Model.User;
 import com.example.appmusic.R;
@@ -73,7 +74,7 @@ public class MainActivity extends AppCompatActivity {
         viewPager = findViewById(R.id.viewpager);
         ViewPagerAdapter adapter = new ViewPagerAdapter(getSupportFragmentManager());
         adapter.addFragment(new Fragment_Home(), "HOME");
-        adapter.addFragment(new Fragment_Find(), "FIND");
+        adapter.addFragment(new Fragment_SongHot(), "FIND");
         viewPager.setAdapter(adapter);
         tabLayout.setupWithViewPager(viewPager);
         tabLayout.getTabAt(0).setIcon(R.drawable.icontrangchu);
@@ -96,7 +97,9 @@ public class MainActivity extends AppCompatActivity {
                     case 0:
                         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_Home()).commit();
                         break;
-
+                    case 1:
+                        getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Fragment_Find()).commit();
+                        break;
                 }
             }
 
@@ -117,7 +120,7 @@ public class MainActivity extends AppCompatActivity {
         MainViewPagerAdapter mainViewPagerAdapter = new MainViewPagerAdapter(manager);
 
         mainViewPagerAdapter.addFragment(new Fragment_Home(), "Home");
-        mainViewPagerAdapter.addFragment(new Fragment_Playlist(), "Search");
+        mainViewPagerAdapter.addFragment(new Fragment_Find(), "Search");
         viewPager.setAdapter(mainViewPagerAdapter); // set cho view pager
 
         navigationView.setNavigationItemSelectedListener(new NavigationView.OnNavigationItemSelectedListener() {

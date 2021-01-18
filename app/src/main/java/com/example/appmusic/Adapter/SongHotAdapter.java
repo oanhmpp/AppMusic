@@ -81,9 +81,9 @@ public class SongHotAdapter extends  RecyclerView.Adapter<SongHotAdapter.ViewHol
                         public void onResponse(Call<String> call, Response<String> response) {
 //                            String ketqua =response.body();
 //                            if(ketqua.equals("Success")){
-//                                Toast.makeText(context,"Da thich",Toast.LENGTH_LONG).show();
+//                                Toast.makeText(context,"Likes",Toast.LENGTH_LONG).show();
 //                            }else{
-//                                Toast.makeText(context,"Loi!!",Toast.LENGTH_LONG).show();
+//                                Toast.makeText(context,"Error!!",Toast.LENGTH_LONG).show();
 //                            }
                         }
 

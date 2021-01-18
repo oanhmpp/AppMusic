@@ -92,8 +92,8 @@ public class ListSongActivity extends AppCompatActivity {
     }
 
     private void GetDataAlbum(String idAlbum) {
-       DataService dataService = APIServer.getService();
-       Call<List<Song>> callback = dataService.GetListSongByAlbum(idAlbum);
+        DataService dataService = APIServer.getService();
+        Call<List<Song>> callback = dataService.GetListSongByAlbum(idAlbum);
         callback.enqueue(new Callback<List<Song>>() {
             @Override
             public void onResponse(Call<List<Song>> call, Response<List<Song>> response) {
@@ -265,16 +265,16 @@ public class ListSongActivity extends AppCompatActivity {
         }
     }
 
-        // dua vao moi phuong thuc get du lieu
-        private void eventClick(){
-            floatingActionButton.setEnabled(true);
-            floatingActionButton.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    Intent intent = new Intent(ListSongActivity.this,PlayMusicActivity.class);
-                    intent.putExtra("songs",arrSong);
-                    startActivity(intent);
-                }
-            });
-        }
+    // dua vao moi phuong thuc get du lieu
+    private void eventClick(){
+        floatingActionButton.setEnabled(true);
+        floatingActionButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ListSongActivity.this,PlayMusicActivity.class);
+                intent.putExtra("songs",arrSong);
+                startActivity(intent);
+            }
+        });
+    }
 }

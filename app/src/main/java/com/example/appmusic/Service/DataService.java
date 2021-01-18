@@ -4,7 +4,6 @@ import com.example.appmusic.Model.Advertisement;
 import com.example.appmusic.Model.Album;
 import com.example.appmusic.Model.Category;
 import com.example.appmusic.Model.Category_Theme;
-import com.example.appmusic.Model.Comment;
 import com.example.appmusic.Model.PlayList;
 import com.example.appmusic.Model.Song;
 import com.example.appmusic.Model.Theme;
@@ -67,6 +66,10 @@ public interface DataService {
     @FormUrlEncoded
     @POST("Server/CategoryByTheme.php")
     Call<List<Category>> getCactegoryByTheme(@Field("idTheme") String idTheme);
+    // search song
+    @FormUrlEncoded
+    @POST("Server/searchSong.php")
+    Call<List<Song>> getSearchSong(@Field("key") String key);
 
     // login, trả về mảng dữ liệu của User
     // tất cả những biến đưa vào để gửi lên Server phải trùng nhau
@@ -81,7 +84,4 @@ public interface DataService {
     @GET("Server/listAlbums.php")
     Call<List<Album>> GetAllAlbum();
 
-    @GET("Server/comment.php")
-    Call<List<Comment>> getDataComment(@Field("IDSong") int IDSong);
-//    Call<List<Comment>> getDataComment();
 }

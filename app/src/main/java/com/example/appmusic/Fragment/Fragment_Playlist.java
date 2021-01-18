@@ -75,9 +75,11 @@ public class Fragment_Playlist extends Fragment {
                 playListAdapter = new PlayListAdapter(getActivity(), android.R.layout.simple_list_item_1, arrPlaylist);
                 lvplaylist.setAdapter(playListAdapter);
                 setListViewHeightBasedOnChildren(lvplaylist);
+
                 lvplaylist.setOnItemClickListener(new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                        // gửi dữ liệu qua DanhSachBaiHat
                         Intent intent = new Intent(getActivity(), ListSongActivity.class);
                         intent.putExtra("itemPlaylist",arrPlaylist.get(position));
                         startActivity(intent);

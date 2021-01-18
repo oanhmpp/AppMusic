@@ -1,5 +1,6 @@
 package com.example.appmusic.Fragment;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -12,6 +13,8 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.appmusic.Activity.ListAlbumActivity;
+import com.example.appmusic.Activity.ListSongActivity;
 import com.example.appmusic.Adapter.SongHotAdapter;
 import com.example.appmusic.Model.Song;
 import com.example.appmusic.R;
@@ -36,6 +39,7 @@ public class Fragment_SongHot extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         view = inflater.inflate(R.layout.fragment_song_hot,container,false);
         recyclerViewSongHot = view.findViewById(R.id.recyclerviewSong);
+
         getData();
         return view;
     }

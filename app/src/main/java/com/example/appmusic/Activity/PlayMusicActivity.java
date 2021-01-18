@@ -116,7 +116,7 @@ public class PlayMusicActivity extends AppCompatActivity {
         DataService dataService = APIServer.getService(); // khởi tạo  DataService, lấy đường dẫn
         Log.d("idSong2",arrSong.get(position).getIDSong()+"idSong2");
         try {
-            Call<List<Comment>> callBack = dataService.getDataComment();// gọi pthuc trả về mảng các cmt
+            Call<List<Comment>> callBack = dataService.getDataComment(Integer.parseInt(arrSong.get(position).getIDSong()));// gọi pthuc trả về mảng các cmt
             callBack.enqueue(new Callback<List<Comment>>() {
                 @Override
                 public void onResponse(Call<List<Comment>> call, Response<List<Comment>> response) {
@@ -400,6 +400,7 @@ public class PlayMusicActivity extends AppCompatActivity {
                 Map<String, String> map = new HashMap<>();
                 map.put("ContentComment", content); // key khi đẩy data lên phải trùng với key khi viết mã PHP để lấy
                 map.put("NameUser", LoginActivity.nameUser); // key khi đẩy data lên phải trùng với key khi viết mã PHP để lấy
+                map.put("IDSong", arrSong.get(position).getIDSong()); // key khi đẩy data lên phải trùng với key khi viết mã PHP để lấy
                 return map;
             }
         };

@@ -29,7 +29,7 @@ public class LoginActivity extends AppCompatActivity {
     EditText txtUserName, txtPass;
     Button btnSign;
     String user_name, password;
-
+    public static String nameUser;
     TextView txtCreateUser,txtForgotPass;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,9 +55,9 @@ public class LoginActivity extends AppCompatActivity {
                         public void onResponse(Call<List<User>> call, Response<List<User>> response) {
                             ArrayList<User> arrUser = (ArrayList<User>) response.body();
                             if(arrUser.size()>0){
-                                Log.d("BBBBBBBBBB", arrUser.get(0).getUserName());
-                                Log.d("fffff", arrUser.get(0).getPassword());
-                                Log.d("hhhhh", arrUser.get(0).getAdmin());
+//                                Log.d("BBBBBBBBBB", arrUser.get(0).getUserName());
+//                                Log.d("fffff", arrUser.get(0).getPassword());
+//                                Log.d("hhhhh", arrUser.get(0).getAdmin());
 
                                 // nếu là admin thì gửi qua trang cho admin
                                 if (arrUser.get(0).getAdmin().equalsIgnoreCase("1")){
@@ -68,13 +68,20 @@ public class LoginActivity extends AppCompatActivity {
                                 }
                                 // nếu là user thì vào giao diện chính
                                 else {
+                                    nameUser = arrUser.get(0).getUserName();
                                     Toast.makeText(LoginActivity.this, "Đăng nhập thành công !", Toast.LENGTH_LONG).show();
-                                    Intent getData = getIntent();
+//                                    Intent getData = getIntent();
                                     Intent intent = new Intent(LoginActivity.this, MainActivity.class);
 //                                    Intent intent1=new Intent(LoginActivity.this, Fragment_nav_header.class);
 //                                    intent1.putExtra("user",arrUser);
                                     intent.putExtra("user", arrUser);
                                     startActivity(intent);
+
+//                                    // tạo intent để gửi qua cmt trong play music
+//                                    Intent intentCmt = new Intent(LoginActivity.this, PlayMusicActivity.class);
+//                                    intentCmt.putExtra("user",arrUser);
+////                                    startActivity(intentCmt);
+
                                 }
                             }else{
                                 Toast.makeText(LoginActivity.this,"Tài khoản không tồn tại",Toast.LENGTH_LONG).show();

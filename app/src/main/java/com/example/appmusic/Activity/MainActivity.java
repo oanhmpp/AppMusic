@@ -48,8 +48,9 @@ public class MainActivity extends AppCompatActivity {
     private BottomAppBar bottomAppBar;
     private ActionBarDrawerToggle drawerToggle; // điều khiển việc đóng mở DrawerLayout
 
+//    private TextView txtUserName;
     //khai báo nav_header
-    TextView NavigationUsername, NavigationAdmin;
+    TextView txtUsername;
     String name="";
 
     NavigationView navigationView;
@@ -171,10 +172,10 @@ public class MainActivity extends AppCompatActivity {
         toolbar = (Toolbar) findViewById(R.id.toolBarMain);
         setSupportActionBar(toolbar);
         //ten user
-        NavigationUsername = findViewById(R.id.NavigationUsername);
+        txtUsername = findViewById(R.id.txtUsername);
         //admin
-        NavigationAdmin = findViewById(R.id.NavigationAdmin);
-//        NavigationUsername.setText(arrUser.get(0).getUserName());
+//        NavigationAdmin = findViewById(R.id.NavigationAdmin);
+//        txtUsername.setText(arrUser.get(0).getUserName());
 
         if (arrUser != null && arrUser.size() > 0) {
             getSupportActionBar().setTitle("Hello: " + arrUser.get(0).getUserName());

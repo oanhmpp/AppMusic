@@ -7,13 +7,14 @@
 
 
     <de.hdodenhof.circleimageview.CircleImageView
+        android:layout_marginLeft="25dp"
         android:id="@+id/imgDisk"
         android:layout_width="345dp"
         android:layout_height="410dp"
-        android:layout_centerInParent="true"
         android:src="@drawable/iconfloatingactionbutton"
         app:civ_border_color="#FF000000"
         app:civ_border_width="2dp" />
+
     <TextView
         android:id="@+id/txtNameSong"
         android:layout_marginTop="5dp"

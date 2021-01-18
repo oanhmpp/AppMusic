@@ -8,27 +8,43 @@
     android:padding="16dp"
     android:theme="@style/ThemeOverlay.AppCompat.Dark">
 
-    <ImageView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:src="@mipmap/ic_launcher_round">
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="horizontal"
+        android:padding="10dp">
 
-    </ImageView>
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@mipmap/zingmp3" />
 
-    <TextView
-        android:id="@+id/NavigationUsername"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Nguyễn Thị Hải Sơn(Admin)"
-        android:textStyle="bold"
-        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="My Account"
+            android:textSize="30dp"
+            android:padding="25dp"/>
+    </LinearLayout>
 
-    <TextView
-        android:id="@+id/NavigationAdmin"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="17130194@st.hcmuaf.edu.vn">
 
-    </TextView>
+    <!--    </ImageView>-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/txtUsername"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="Nguyễn Thị Hải Sơn(Admin)"-->
+<!--        android:textStyle="bold"-->
+<!--        android:textAppearance="@style/TextAppearance.AppCompat.Body1" />-->
+
+<!--    <TextView-->
+<!--        android:id="@+id/NavigationAdmin"-->
+<!--        android:layout_width="wrap_content"-->
+<!--        android:layout_height="wrap_content"-->
+<!--        android:text="17130194@st.hcmuaf.edu.vn">-->
+
+<!--    </TextView>-->
 
 </LinearLayout>

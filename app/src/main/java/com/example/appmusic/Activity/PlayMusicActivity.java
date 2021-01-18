@@ -2,6 +2,7 @@ package com.example.appmusic.Activity;
 
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 import androidx.appcompat.widget.Toolbar;
@@ -17,29 +18,55 @@ import android.os.Handler;
 import android.os.StrictMode;
 import android.util.Log;
 import android.view.View;
-import android.view.WindowManager;
+import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.SeekBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+import com.example.appmusic.Adapter.CommentAdapter;
 import com.example.appmusic.Adapter.ViewPagerPlayListAdapter;
+import com.example.appmusic.Admin.AddUserActivity;
+import com.example.appmusic.Admin.Manager_User_Activity;
 import com.example.appmusic.Fragment.Fragment_Music_Disk;
 import com.example.appmusic.Fragment.Fragment_Play_List_Songs;
+import com.example.appmusic.Model.Comment;
 import com.example.appmusic.Model.Song;
+import com.example.appmusic.Model.User;
 import com.example.appmusic.R;
-import com.squareup.picasso.Picasso;
+import com.example.appmusic.Service.APIServer;
+import com.example.appmusic.Service.DataService;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class PlayMusicActivity extends AppCompatActivity {
+    RecyclerView recyclerViewComment;
     Toolbar toolbarPlayMusic;
     TextView txtTimeSong, txtTimeTotal;
     SeekBar seekBarSong;
     ImageButton imgButtonShuff, imgButtonPre, imgButtonPlay, imgButtonNext, imgButtonRepeat, imgButtonLove, imgButtonList;
     ViewPager viewPagerPlayMusic;
+    EditText txtContentCmt;
+    Button btnPost;
+    String idSong;
     public static ArrayList<Song> arrSong = new ArrayList<>();
+    public static ArrayList<Comment> comments = new ArrayList<>();
     public static ViewPagerPlayListAdapter adapterMusic;
     Fragment_Music_Disk fragment_music_disk;
     Fragment_Play_List_Songs fragment_play_list_songs;
@@ -49,6 +76,12 @@ public class PlayMusicActivity extends AppCompatActivity {
     boolean repeat = false;
     boolean checkRandom = false;
     boolean next = false;
+    String content;
+    CommentAdapter commentAdapter;
+    ArrayList<User> listUser;
+
+    String urlInsert="https://oanhnguyen1999.000webhostapp.com/Server/addCmt.php";
+
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -69,8 +102,46 @@ public class PlayMusicActivity extends AppCompatActivity {
 //            mediaPlayer.release();
 //            mediaPlayer = null;
 //        }
+        // lay ten nguoi dung de cmt
+        // lấy dữ liệu từ màn hình login qua ( admin)
+        Intent intent = getIntent();
+        listUser = (ArrayList<User>) intent.getSerializableExtra("user");
+
         init();
         eventClick();
+        getDataComment();
+    }
+
+    private void getDataComment() {
+        DataService dataService = APIServer.getService(); // khởi tạo  DataService, lấy đường dẫn
+        Log.d("idSong2",arrSong.get(position).getIDSong()+"idSong2");
+        try {
+            Call<List<Comment>> callBack = dataService.getDataComment(Integer.parseInt(arrSong.get(position).getIDSong()));// gọi pthuc trả về mảng các cmt
+            callBack.enqueue(new Callback<List<Comment>>() {
+                @Override
+                public void onResponse(Call<List<Comment>> call, Response<List<Comment>> response) {
+                    // sự kiện lăng nghe thành côngn
+                    comments = (ArrayList<Comment>) response.body(); // trả về mảng dữ liệu
+                    // in ra xem kết quả
+//                Log.d("B", comments.get(0).getContentComment());
+                    commentAdapter = new CommentAdapter(PlayMusicActivity.this, comments);
+
+                    recyclerViewComment.setLayoutManager(new LinearLayoutManager(PlayMusicActivity.this, RecyclerView.VERTICAL, false));
+                    recyclerViewComment.setAdapter(commentAdapter);
+//                eventClick();
+                }
+
+                // sự kiện thất bại
+                @Override
+                public void onFailure(Call<List<Comment>> call, Throwable t) {
+                    Log.d("BBBBBBBBBBB", arrSong.size() + "");
+                }
+            });
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            Log.d("Errrorrrrrrrr", "Loi");
+        }
     }
 
     private void eventClick() {
@@ -78,13 +149,14 @@ public class PlayMusicActivity extends AppCompatActivity {
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                if (adapterMusic.getItem(position) != null) {
-                    if (arrSong.size() > 0) {
-                        fragment_music_disk.playMusic(arrSong.get(position).getImageSong());
-                        handler.removeCallbacks(this);
-                    } else {
-                        handler.postDelayed(this, 300);
-                    }
+                adapterMusic.getItem(position);
+                if (arrSong.size() > 0) {
+                    fragment_music_disk.playMusic(arrSong.get(position).getImageSong());
+//                    Log.d("HHHHHHHH", arrSong.get(position).getIDSong()+arrSong.get(position).getLinkSong() + position + "sdfg");
+
+                    handler.removeCallbacks(this);
+                } else {
+                    handler.postDelayed(this, 300);
                 }
             }
 
@@ -188,7 +260,6 @@ public class PlayMusicActivity extends AppCompatActivity {
 
                     new Playmp3().execute(arrSong.get(position).getLinkSong());
                     // in ra bài thứ 3 nè
-                    Log.d("HHHHHHHH", arrSong.get(position).getNameSong() + position + "");
                     imgButtonPlay.setImageResource(R.drawable.iconpause);
                     fragment_music_disk.playMusic(arrSong.get(position).getImageSong());
                     fragment_music_disk.txtNameSinger.setText("Tên ca sĩ: " + arrSong.get(position).getSinger());
@@ -270,6 +341,70 @@ public class PlayMusicActivity extends AppCompatActivity {
                 }, 5000);
             }
         });
+
+        // sự kiện nút cmt
+        btnPost.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                // lấy giá trị người dùng nhập
+                txtContentCmt = (EditText) findViewById(R.id.editTextComment);
+
+                content = txtContentCmt.getText().toString();
+                // kiểm tra người dùng có nhập đầy đủ thông tin hay k?
+                if (content.isEmpty()) {
+                    Toast.makeText(PlayMusicActivity.this, "Vui lòng nhập bình luận!", Toast.LENGTH_LONG).show();
+                } else {
+                    addCmt(urlInsert);
+                    txtContentCmt.setText("");
+                }
+            }
+        });
+
+    }
+
+    private void addCmt(String url) {
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        // đẩy dữ liệu lên nên dùng POST
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, url, new com.android.volley.Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                // phần nhận kết quả
+                Log.d("kq",response.trim());
+                if (response.trim().equalsIgnoreCase("Success")) {
+                    Toast.makeText(PlayMusicActivity.this, "Thêm thành công", Toast.LENGTH_LONG).show();
+                    // sau đó chuyển màn hình về MainActivity
+//                    Intent intent = new Intent(PlayMusicActivity.this, PlayMusicActivity.class);
+//                    startActivity(intent);
+
+                } else {
+                    Toast.makeText(PlayMusicActivity.this, "Thêm thất bại", Toast.LENGTH_LONG).show();
+                }
+            }
+        }, new com.android.volley.Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                // phần lỗi
+                Toast.makeText(PlayMusicActivity.this, "Lỗi " + error.toString(), Toast.LENGTH_LONG).show();
+            }
+        }
+        ) {
+            // đẩy dữ liệu lên Server
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                // lấy giá trị người dùng nhập
+//                String content = txtContentCmt.getText().toString();
+//                String nameUser = listUser.get(0).getUserName();
+//                Log.d("content",content);
+//                Log.d("content","content");
+                // khởi tạo Map để đẩy dữ liệu vào
+                Map<String, String> map = new HashMap<>();
+                map.put("ContentComment", content); // key khi đẩy data lên phải trùng với key khi viết mã PHP để lấy
+                map.put("NameUser", LoginActivity.nameUser); // key khi đẩy data lên phải trùng với key khi viết mã PHP để lấy
+                map.put("IDSong", arrSong.get(position).getIDSong()); // key khi đẩy data lên phải trùng với key khi viết mã PHP để lấy
+                return map;
+            }
+        };
+        requestQueue.add(stringRequest);
     }
 
     private void getDataFromIntent() {
@@ -303,6 +438,10 @@ public class PlayMusicActivity extends AppCompatActivity {
         imgButtonNext = (ImageButton) findViewById(R.id.imgButtonNext);
         imgButtonRepeat = (ImageButton) findViewById(R.id.imgButtonRepeat);
         viewPagerPlayMusic = (ViewPager) findViewById(R.id.viewpagerMusic);
+
+        //commenteditTextComment
+        recyclerViewComment = (RecyclerView) findViewById(R.id.recyclerViewComment);
+        btnPost = (Button) findViewById(R.id.btnPost);
 
         //imgDisk = (ImageView) findViewById(R.id.imgDisk);
 
@@ -450,6 +589,8 @@ public class PlayMusicActivity extends AppCompatActivity {
                         fragment_music_disk.playMusic(arrSong.get(position).getImageSong());
                         fragment_music_disk.txtNameSinger.setText("Tên ca sĩ: " + arrSong.get(position).getSinger());
                         fragment_music_disk.txtNameSong.setText("Tên bài hát: " + arrSong.get(position).getNameSong());
+                        idSong = arrSong.get(position).getIDSong();
+                        Log.d("idSong",idSong+"idSong");
                         getSupportActionBar().setTitle(arrSong.get(position).getNameSong());
                     }
 

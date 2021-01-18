@@ -13,6 +13,9 @@ public class Comment {
     @SerializedName("ContentComment")
     @Expose
     private String contentComment;
+    @SerializedName("IDSong")
+    @Expose
+    private String iDSong;
 
     public String getIDCmt() {
         return iDCmt;
@@ -36,6 +39,14 @@ public class Comment {
 
     public void setContentComment(String contentComment) {
         this.contentComment = contentComment;
+    }
+
+    public String getIDSong() {
+        return iDSong;
+    }
+
+    public void setIDSong(String iDSong) {
+        this.iDSong = iDSong;
     }
 
 }

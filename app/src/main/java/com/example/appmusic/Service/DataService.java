@@ -82,5 +82,6 @@ public interface DataService {
     Call<List<Album>> GetAllAlbum();
 
     @GET("Server/comment.php")
+//    Call<List<Comment>> getDataComment(@Field("IDSong") String IDSong);
     Call<List<Comment>> getDataComment();
 }

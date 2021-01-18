@@ -64,6 +64,7 @@ public class PlayMusicActivity extends AppCompatActivity {
     ViewPager viewPagerPlayMusic;
     EditText txtContentCmt;
     Button btnPost;
+    String idSong;
     public static ArrayList<Song> arrSong = new ArrayList<>();
     public static ArrayList<Comment> comments = new ArrayList<>();
     public static ViewPagerPlayListAdapter adapterMusic;
@@ -106,34 +107,41 @@ public class PlayMusicActivity extends AppCompatActivity {
         Intent intent = getIntent();
         listUser = (ArrayList<User>) intent.getSerializableExtra("user");
 
-        getDataComment();
         init();
         eventClick();
+        getDataComment();
     }
 
     private void getDataComment() {
         DataService dataService = APIServer.getService(); // khởi tạo  DataService, lấy đường dẫn
-        Call<List<Comment>> callBack = dataService.getDataComment();// gọi pthuc trả về mảng các Album
-        callBack.enqueue(new Callback<List<Comment>>() {
-            @Override
-            public void onResponse(Call<List<Comment>> call, Response<List<Comment>> response) {
-                // sự kiện lăng nghe thành côngn
-                comments = (ArrayList<Comment>) response.body(); // trả về mảng dữ liệu
-                // in ra xem kết quả
+        Log.d("idSong2",arrSong.get(position).getIDSong()+"idSong2");
+        try {
+            Call<List<Comment>> callBack = dataService.getDataComment();// gọi pthuc trả về mảng các cmt
+            callBack.enqueue(new Callback<List<Comment>>() {
+                @Override
+                public void onResponse(Call<List<Comment>> call, Response<List<Comment>> response) {
+                    // sự kiện lăng nghe thành côngn
+                    comments = (ArrayList<Comment>) response.body(); // trả về mảng dữ liệu
+                    // in ra xem kết quả
 //                Log.d("B", comments.get(0).getContentComment());
-                commentAdapter = new CommentAdapter(PlayMusicActivity.this, comments);
+                    commentAdapter = new CommentAdapter(PlayMusicActivity.this, comments);
 
-                recyclerViewComment.setLayoutManager(new LinearLayoutManager(PlayMusicActivity.this, RecyclerView.VERTICAL, false));
-                recyclerViewComment.setAdapter(commentAdapter);
+                    recyclerViewComment.setLayoutManager(new LinearLayoutManager(PlayMusicActivity.this, RecyclerView.VERTICAL, false));
+                    recyclerViewComment.setAdapter(commentAdapter);
 //                eventClick();
-            }
+                }
 
-            // sự kiện thất bại
-            @Override
-            public void onFailure(Call<List<Comment>> call, Throwable t) {
-                Log.d("BBBBBBBBBBB", arrSong.size() + "");
-            }
-        });
+                // sự kiện thất bại
+                @Override
+                public void onFailure(Call<List<Comment>> call, Throwable t) {
+                    Log.d("BBBBBBBBBBB", arrSong.size() + "");
+                }
+            });
+        }
+        catch (Exception e){
+            e.printStackTrace();
+            Log.d("Errrorrrrrrrr", "Loi");
+        }
     }
 
     private void eventClick() {
@@ -144,6 +152,8 @@ public class PlayMusicActivity extends AppCompatActivity {
                 adapterMusic.getItem(position);
                 if (arrSong.size() > 0) {
                     fragment_music_disk.playMusic(arrSong.get(position).getImageSong());
+//                    Log.d("HHHHHHHH", arrSong.get(position).getIDSong()+arrSong.get(position).getLinkSong() + position + "sdfg");
+
                     handler.removeCallbacks(this);
                 } else {
                     handler.postDelayed(this, 300);
@@ -250,7 +260,6 @@ public class PlayMusicActivity extends AppCompatActivity {
 
                     new Playmp3().execute(arrSong.get(position).getLinkSong());
                     // in ra bài thứ 3 nè
-                    Log.d("HHHHHHHH", arrSong.get(position).getNameSong() + position + "");
                     imgButtonPlay.setImageResource(R.drawable.iconpause);
                     fragment_music_disk.playMusic(arrSong.get(position).getImageSong());
                     fragment_music_disk.txtNameSinger.setText("Tên ca sĩ: " + arrSong.get(position).getSinger());
@@ -579,6 +588,8 @@ public class PlayMusicActivity extends AppCompatActivity {
                         fragment_music_disk.playMusic(arrSong.get(position).getImageSong());
                         fragment_music_disk.txtNameSinger.setText("Tên ca sĩ: " + arrSong.get(position).getSinger());
                         fragment_music_disk.txtNameSong.setText("Tên bài hát: " + arrSong.get(position).getNameSong());
+                        idSong = arrSong.get(position).getIDSong();
+                        Log.d("idSong",idSong+"idSong");
                         getSupportActionBar().setTitle(arrSong.get(position).getNameSong());
                     }
 
